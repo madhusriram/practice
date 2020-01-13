@@ -1,2 +1,2 @@
-# interview
-Software Engineering Interview Prep
+# Practice to be a better prog-man 
+Software Engineering Prep
