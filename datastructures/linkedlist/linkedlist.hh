@@ -4,42 +4,22 @@
 #define	_LINKEDLIST_H_
 
 #include <iostream>
+#include <list>
 
 template <typename T>
-class Node {
-	protected:
-		struct node {
-			T data;
-			struct node *next;
-			struct node *prev;
-		};
+struct Node {
+	T data;
+	Node<T> *next;
+	Node<T> *prev;
 
-	public:
-		typedef struct node listNode;
+	static Node<T> *createNode(T d) {
+		Node<T> *n = new(Node<T>);
+		n->data = d;
+		n->next = nullptr;
+		n->prev = nullptr;	
 
-		// Create a node
-		listNode* createNode(T v) {
-			listNode *n = new(listNode);
-			n->data = v;
-			n->next = nullptr;
-			n->prev = nullptr;
-			return n;
-		}
-		
-		// the list
-		listNode *l = nullptr;
-
-		// temporary to store all intermediate node creations
-		listNode *tmp = nullptr;
-
-		// destructor - destroy the list
-		~Node() {
-			while (l != nullptr) {
-				tmp = l->next;
-				delete(l);
-				l = tmp;
-			}			
-		};
+		return n;	
+	}
 };
 
 /*
@@ -75,13 +55,16 @@ class DoublyLinkedList : public Node<T> {
 
 */
 template <typename T>
-class DoublyCircularLinkedList : public Node<T> {
+class DoublyCircularLinkedList {
 	public:
+		// start of a list
+		struct Node<T> *list = nullptr;
+		
 		// constructor
 		DoublyCircularLinkedList() { };
 
 		// add node
-		void addNode(T v);
+		void addToList(T v);
 
 		// traverse the list
 		void traverseCircularList();
@@ -97,7 +80,19 @@ class DoublyCircularLinkedList : public Node<T> {
 
 		// delete even positions
 		void deleteEvenPos();
+
+		// delete the list;
+		void deleteList();
+
+		void getListElements(std::list<T> &);
+
+		// is end of list
+		bool isEndOfList(Node<T> *, Node<T> *);
+
+		// length of the list
+		unsigned int length();
 };
 
 #include "doublycircular_impl.hh"
+
 #endif // _LINKEDLIST_H_
