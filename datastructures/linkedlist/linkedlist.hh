@@ -63,8 +63,11 @@ class DoublyCircularLinkedList {
 		// constructor
 		DoublyCircularLinkedList() { };
 
-		// add node
+		// add to list 1 value
 		void addToList(T v);
+
+		// add to list from a list
+		void addToList(const std::list<T>);
 
 		// traverse the list
 		void traverseCircularList();
@@ -87,11 +90,20 @@ class DoublyCircularLinkedList {
 		// dump's 'list' into the list passed in by the user
 		void getListElements(std::list<T> &);
 
-		// is end of list
-		bool isEndOfList(Node<T> *, Node<T> *);
+		// reverse the list
+		void reverse();
+
+		// delete at an index
+		bool deleteAtPos(int pos);
 
 		// length of the list
 		unsigned int length();
+	private:
+		// is end of list
+		bool isEndOfList(Node<T> *, Node<T> *);
+
+		// deleteAtPos helper
+		void deleteNode(Node<T> *tmp);
 };
 
 #include "doublycircular_impl.hh"

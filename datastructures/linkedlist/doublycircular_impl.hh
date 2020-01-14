@@ -3,7 +3,7 @@ template <typename T>
 void DoublyCircularLinkedList<T>::addToList(T v) {
 	Node<T> *tmp = Node<T>::createNode(v);
 		
-	// if not the first node to the list
+	// if the first node to the list
 	if (list == nullptr) {
 		tmp->prev = tmp;
 		tmp->next = tmp;
@@ -19,23 +19,44 @@ void DoublyCircularLinkedList<T>::addToList(T v) {
 	last->next->next->prev = tmp;
 }
 
+// adds bunch of values to the end of the list from a list
+template <typename T>
+void DoublyCircularLinkedList<T>::addToList(std::list<T> l) {
+
+	for (typename std::list<T>::iterator it = l.begin(); it != l.end(); ++it) {
+		Node<T> *tmp = Node<T>::createNode(*it);
+
+		// if the first node to the list
+		if (list == nullptr) {
+			tmp->prev = tmp;
+			tmp->next = tmp;
+			list = tmp;
+			continue;
+		}
+
+		// append to end of the list
+		Node<T> *last = list->prev;
+		last->next = tmp;
+		tmp->next = list;
+		tmp->prev = last;
+		last->next->next->prev = tmp;
+	}
+}
+
 // Just to debug
 template <typename T>
 void DoublyCircularLinkedList<T>::traverseCircularList() {
 	Node<T> *tmp = list;
-	int i = 0;
 
 	// run until you start looping over
 	while ( tmp != nullptr ) {
-		std::cout << "Index: " << i << "; ";
-		std::cout << tmp->data << std::endl;
+		std::cout << tmp->data << " "; 
 		tmp = tmp->next;
 	
-		i++;
-
 		if ( isEndOfList(tmp, list) ) 
 			break;
 	}
+	std::cout << std::endl;
 }
 
 // this could be done easier by tracking the length during adds but
@@ -87,6 +108,7 @@ void DoublyCircularLinkedList<T>::deleteOddPos() {
 template <typename T>
 void DoublyCircularLinkedList<T>::deleteEvenPos() {
 
+
 }
 
 // link 2 lists
@@ -128,4 +150,75 @@ void DoublyCircularLinkedList<T>::linkTwoLists(DoublyCircularLinkedList<T>& l2) 
 	// tie list 1's head to list 2's tail and vice-versa
 	l2End->next = l1Start;
 	l1Start->prev = l2End;
+}
+
+// reverse list
+// 1->2->3->4 becomes 4->3->2->1
+template <typename T>
+void DoublyCircularLinkedList<T>::reverse() {
+	// for a single node there is no idea of reversing!
+	if (list == nullptr || list == list->next)
+		return;
+
+	// save first and last
+	Node<T> *oldstart = list;
+	Node<T> *oldend = list->prev;
+	
+	Node<T> *savenext = list->next;
+	Node<T> *l = list;
+
+	// run through the list and reverse the pointers
+	while (oldstart != savenext) {
+		l->next = l->prev;
+		l->prev = savenext;
+
+		// advance to next
+		l = savenext;
+		savenext = savenext->next;
+	}
+
+	// last node needs to be updated!
+	l->next = l->prev;
+	l->prev = savenext;
+
+	// update the list!
+	list = oldend;
+}
+
+template <typename T>
+void DoublyCircularLinkedList<T>::deleteNode(Node<T> *toBeRemovedNode) {
+	toBeRemovedNode->prev->next = toBeRemovedNode->next;
+	toBeRemovedNode->next->prev = toBeRemovedNode->prev;
+	delete toBeRemovedNode;
+}
+
+// delete element at a index
+template <typename T>
+bool DoublyCircularLinkedList<T>::deleteAtPos(int pos) {
+	unsigned int i = 1;
+	unsigned int len = this->length();
+	Node<T> *tmp = list;
+
+	if (list == nullptr || pos > len) {
+		return false;
+	} else if (pos == 1 && len == 1) {
+		delete list;
+		return true;
+	} else if (len == pos) { // last element
+		deleteNode(list->prev);
+		Node<T> *saved = list->prev;
+		saved->prev->next = saved->next;
+		saved->next->prev = saved->prev; // list->prev = saved->prev;
+		delete saved;
+		return true;
+	}
+
+	// go until you find the element to be removed
+	while (i != pos) {
+		tmp = tmp->next;
+		i++;
+	}
+
+	deleteNode(tmp);
+	return true;
 }

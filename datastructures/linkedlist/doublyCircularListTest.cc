@@ -1,6 +1,9 @@
 #include "linkedlist.hh"
 #include <gtest/gtest.h>
 
+typedef std::list<int> intlist_t;
+typedef std::list<float> floatlist_t;
+
 // test list size
 TEST(DoublyCircularLinkedList, ListSize) {
 	DoublyCircularLinkedList<int> dl;
@@ -17,14 +20,14 @@ TEST(DoublyCircularLinkedList, ListSize) {
 TEST(DoublyCircularLinkedList, ListElements) {
 	DoublyCircularLinkedList<float> dl;
 
-	std::list<float> addedElements { 2.4, 3.5 };
+	floatlist_t addedElements { 2.4, 3.5 };
 	for (std::list<float>::const_iterator iterator = addedElements.begin(); 
 					iterator != addedElements.end();
 					++iterator) {
 		dl.addToList(*iterator);
 	}
 
-	std::list<float> listElements; 
+	floatlist_t listElements; 
 	dl.getListElements(listElements);
 
 	ASSERT_EQ(listElements == addedElements, 1);
@@ -32,18 +35,15 @@ TEST(DoublyCircularLinkedList, ListElements) {
 
 // Test linking two lists
 TEST(DoublyCircularLinkedList, LinkTwoLists) {
+
 	DoublyCircularLinkedList<int> l1;
 	DoublyCircularLinkedList<int> l2;
 
 	// list 1
-	l1.addToList(1);
-	l1.addToList(2);
-	l1.addToList(3);
+	l1.addToList(intlist_t {1,2,3});
 
 	// list 2 - append this to l2
-	l2.addToList(4);
-	l2.addToList(5);
-	l2.addToList(6);
+	l2.addToList(intlist_t {4,5,6});
 
 	// link 'em both!
 	l1.linkTwoLists(l2);
@@ -51,8 +51,8 @@ TEST(DoublyCircularLinkedList, LinkTwoLists) {
 	// length should be the addition of both, with l1 containing the joined list
 	ASSERT_EQ(6, l1.length());
 
-	std::list<int> addedElements {1,2,3,4,5,6};
-	std::list<int> listElements;
+	intlist_t addedElements {1,2,3,4,5,6};
+	intlist_t listElements;
 	l1.getListElements(listElements);
 
 	// l2's elements should be in l1 and at the end!
@@ -63,6 +63,53 @@ TEST(DoublyCircularLinkedList, LinkTwoLists) {
 TEST(DoublyCircularLinkedList, DeleteEvenPos) {
 
 
+}
+
+// Delete odd positioned elements
+TEST(DoublyCircularLinkedList, DeleteOddPos) {
+
+}
+
+// Reverse the list
+TEST(DoublyCircularLinkedList, Reverse) {
+
+	DoublyCircularLinkedList<int> l1;
+
+	l1.addToList(intlist_t {1,2,3,4});
+	l1.traverseCircularList();
+
+	// reverse!
+	l1.reverse();
+
+	intlist_t addedElements {4,3,2,1};
+	intlist_t listElements;
+	l1.getListElements(listElements);
+
+	l1.traverseCircularList();
+	ASSERT_EQ(listElements == addedElements, 1);
+
+}
+
+// Delete at a position
+// return false if the position specified is larger then the list length
+// List index starts from 1
+TEST(DoublyCircularLinkedList, DeleteAtPos) {
+	DoublyCircularLinkedList<int> l;
+
+	l.addToList(intlist_t {1,2,3,4,5});
+
+	bool res = l.deleteAtPos(10);
+	ASSERT_EQ(res, false);
+
+	res = l.deleteAtPos(2);
+	ASSERT_EQ(res, true);
+
+	intlist_t addedElements {1,3,4,5};
+	intlist_t listElements;
+	l.getListElements(listElements);
+
+	ASSERT_EQ(listElements == addedElements, 1);
+	ASSERT_EQ(l.length() == 4, 1);
 }
 
 // Start here!
