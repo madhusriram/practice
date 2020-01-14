@@ -84,6 +84,7 @@ class DoublyCircularLinkedList {
 		// delete the list;
 		void deleteList();
 
+		// dump's 'list' into the list passed in by the user
 		void getListElements(std::list<T> &);
 
 		// is end of list

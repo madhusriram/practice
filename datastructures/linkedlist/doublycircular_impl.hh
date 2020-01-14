@@ -90,22 +90,27 @@ void DoublyCircularLinkedList<T>::deleteEvenPos() {
 }
 
 // link 2 lists
-//
 template <typename T>
 void DoublyCircularLinkedList<T>::linkTwoLists(DoublyCircularLinkedList<T>& l2) {
-	if (list == nullptr && l2.list == nullptr)
-		return;
-	else if (list == nullptr)
-		list = l2;
-	else if (l2.list == nullptr)
-		list = l1;
 
+	Node<T> *l2list = l2.list;
+
+	if (list == nullptr && l2list == nullptr)
+		return;
+	else if (list == nullptr) {
+		list = l2list;
+		return;
+	}
+	else if (l2list == nullptr) {
+		return;
+	}
+		
 	// save the start to tag the second list to the first!
 	Node<T> *l1Start = list;
 	// temp to traverse through the first list
 	Node<T> *tmp = list;
 	// save list 2's last element
-	Node<T> *l2End = l2->prev;
+	Node<T> *l2End = l2list->prev;
 
 	// scroll through the end of the list 1
 	while (tmp != nullptr) {
@@ -115,8 +120,8 @@ void DoublyCircularLinkedList<T>::linkTwoLists(DoublyCircularLinkedList<T>& l2) 
 			// move back one step
 			tmp = tmp->prev;
 			// add second list to tmp's next!
-			tmp->next = l2;
-			l2->prev = tmp;
+			tmp->next = l2list;
+			l2list->prev = tmp;
 			break;
 		}
 	}

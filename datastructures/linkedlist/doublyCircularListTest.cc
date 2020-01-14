@@ -30,7 +30,7 @@ TEST(DoublyCircularLinkedList, ListElements) {
 	ASSERT_EQ(listElements == addedElements, 1);
 }
 
-// Test even positioned elements are removed
+// Test linking two lists
 TEST(DoublyCircularLinkedList, LinkTwoLists) {
 	DoublyCircularLinkedList<int> l1;
 	DoublyCircularLinkedList<int> l2;
@@ -51,8 +51,21 @@ TEST(DoublyCircularLinkedList, LinkTwoLists) {
 	// length should be the addition of both, with l1 containing the joined list
 	ASSERT_EQ(6, l1.length());
 
+	std::list<int> addedElements {1,2,3,4,5,6};
+	std::list<int> listElements;
+	l1.getListElements(listElements);
+
+	// l2's elements should be in l1 and at the end!
+	ASSERT_EQ(listElements == addedElements, 1);
 }
 
+// Delete even positioned elements
+TEST(DoublyCircularLinkedList, DeleteEvenPos) {
+
+
+}
+
+// Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);
 	return RUN_ALL_TESTS();
