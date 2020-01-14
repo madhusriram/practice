@@ -69,7 +69,6 @@ void DoublyCircularLinkedList<T>::getListElements(std::list<T>& l) {
 	}
 }
 
-
 template <typename T>
 inline bool DoublyCircularLinkedList<T>::isEndOfList(Node<T> *a, Node<T> *b) {
 	if (a == b) {
@@ -82,5 +81,46 @@ inline bool DoublyCircularLinkedList<T>::isEndOfList(Node<T> *a, Node<T> *b) {
 template <typename T>
 void DoublyCircularLinkedList<T>::deleteOddPos() {
 	
+}
 
+// delete even positions in the list
+template <typename T>
+void DoublyCircularLinkedList<T>::deleteEvenPos() {
+
+}
+
+// link 2 lists
+//
+template <typename T>
+void DoublyCircularLinkedList<T>::linkTwoLists(DoublyCircularLinkedList<T>& l2) {
+	if (list == nullptr && l2.list == nullptr)
+		return;
+	else if (list == nullptr)
+		list = l2;
+	else if (l2.list == nullptr)
+		list = l1;
+
+	// save the start to tag the second list to the first!
+	Node<T> *l1Start = list;
+	// temp to traverse through the first list
+	Node<T> *tmp = list;
+	// save list 2's last element
+	Node<T> *l2End = l2->prev;
+
+	// scroll through the end of the list 1
+	while (tmp != nullptr) {
+		tmp = tmp->next;
+
+		if (isEndOfList(tmp, list)) {
+			// move back one step
+			tmp = tmp->prev;
+			// add second list to tmp's next!
+			tmp->next = l2;
+			l2->prev = tmp;
+			break;
+		}
+	}
+	// tie list 1's head to list 2's tail and vice-versa
+	l2End->next = l1Start;
+	l1Start->prev = l2End;
 }

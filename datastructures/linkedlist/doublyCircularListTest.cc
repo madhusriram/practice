@@ -31,8 +31,25 @@ TEST(DoublyCircularLinkedList, ListElements) {
 }
 
 // Test even positioned elements are removed
-TEST(DoublyCircularLinkedList, DeleteEvenPost) {
+TEST(DoublyCircularLinkedList, LinkTwoLists) {
+	DoublyCircularLinkedList<int> l1;
+	DoublyCircularLinkedList<int> l2;
 
+	// list 1
+	l1.addToList(1);
+	l1.addToList(2);
+	l1.addToList(3);
+
+	// list 2 - append this to l2
+	l2.addToList(4);
+	l2.addToList(5);
+	l2.addToList(6);
+
+	// link 'em both!
+	l1.linkTwoLists(l2);
+
+	// length should be the addition of both, with l1 containing the joined list
+	ASSERT_EQ(6, l1.length());
 
 }
 

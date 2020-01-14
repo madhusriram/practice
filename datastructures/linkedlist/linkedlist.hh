@@ -70,7 +70,7 @@ class DoublyCircularLinkedList {
 		void traverseCircularList();
 
 		// link 2 circular lists
-		void linkTwoLists();
+		void linkTwoLists(DoublyCircularLinkedList<T> &);
 
 		// split list
 		void splitCircularLists(DoublyCircularLinkedList &);
