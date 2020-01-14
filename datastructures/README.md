@@ -11,3 +11,6 @@ Implementations of a few data structures/algorithms and their tests in C++ for f
 	- Max heaps
 	- Min heaps (priority queue)
 - Binary Search Tree
+	- AVL Tree
+	- Red black tree
+
