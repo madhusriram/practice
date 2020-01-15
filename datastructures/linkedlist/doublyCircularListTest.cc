@@ -76,7 +76,6 @@ TEST(DoublyCircularLinkedList, Reverse) {
 	DoublyCircularLinkedList<int> l1;
 
 	l1.addToList(intlist_t {1,2,3,4});
-	l1.traverseCircularList();
 
 	// reverse!
 	l1.reverse();
@@ -85,7 +84,6 @@ TEST(DoublyCircularLinkedList, Reverse) {
 	intlist_t listElements;
 	l1.getListElements(listElements);
 
-	l1.traverseCircularList();
 	ASSERT_EQ(listElements == addedElements, 1);
 
 }

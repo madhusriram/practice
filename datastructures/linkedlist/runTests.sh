@@ -4,5 +4,6 @@
 mkdir build && cd build
 cmake ../
 make
-./runTests
+./doublyCircularTests
+./singlyListTests
 cd ../ && rm -rf build

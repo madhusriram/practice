@@ -12,6 +12,8 @@ struct Node {
 	Node<T> *next;
 	Node<T> *prev;
 
+	// depending on the type of the list, the prev pointer might be of use
+	// or no use!
 	static Node<T> *createNode(T d) {
 		Node<T> *n = new(Node<T>);
 		n->data = d;
@@ -22,25 +24,64 @@ struct Node {
 	}
 };
 
-/*
 template <typename T>
-class SinglyLinkedList : public Node<T> {
+class SinglyList : public Node<T> {
 	public:
-		// set data
-		void addNode(T);
+		SinglyList() : length(0) { };
+
+		// singly linked list
+		struct Node<T> *list = nullptr;
+
+		// add to list a value at the front
+		void push_front(T v);
+
+		// add to list from a list
+		void push_front(const std::list<T>);
+
+		// add to the list a value at the back
+		void push_back(T v);
+
+		// add to the list a bunch of values at the back
+		void push_back(const std::list<T>);
 
 		// traverse the list
 		void traverseList();
 
-		void traverseCircular();
+		// link two lists
+		void linkTwoLists(SinglyList<T> &);
 
-		void linkTwoLists();
+		// split list
+		void splitLists(SinglyList &);
+		
+		// delete odd positions
+		void deleteOddPos();
+
+		// delete even positions
+		void deleteEvenPos();
+
+		// reverse a list
+		void reverse();
+
+		// get length of a list
+		unsigned int getLength() { return length; }
 
 		void sortList();
 
+		// sort and join two lists
 		void sortAndJoinTwoLists();
+
+		// copies linked list elements into the list passed in by the user
+		void getListElements(std::list<T> &);
+	
+	private:
+		void deleteNode(Node<T> *tmp);
+
+		struct Node<T> *last = nullptr;
+
+		unsigned int length;
 };
 
+/*
 template <typename T>
 class DoublyLinkedList : public Node<T> {
 	public:
@@ -60,9 +101,6 @@ class DoublyCircularLinkedList {
 		// start of a list
 		struct Node<T> *list = nullptr;
 		
-		// constructor
-		DoublyCircularLinkedList() { };
-
 		// add to list 1 value
 		void addToList(T v);
 
@@ -107,5 +145,6 @@ class DoublyCircularLinkedList {
 };
 
 #include "doublycircular_impl.hh"
+#include "singlylist_impl.hh"
 
 #endif // _LINKEDLIST_H_
