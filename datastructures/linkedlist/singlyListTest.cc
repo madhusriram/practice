@@ -13,11 +13,11 @@ TEST(SinglyList, ListElements) {
 	sl.push_back(4);
 	sl.push_back(5);
 
-	std::list<int> addedList{3,2,1,4,5};
+	std::list<int> expectedResult{3,2,1,4,5};
 
 	std::list<int> listEl;
 	sl.getListElements(listEl);
-	ASSERT_EQ(listEl == addedList, 1);
+	ASSERT_EQ(listEl == expectedResult, 1);
 }
 
 TEST(SinglyList, DeleteOddPos) {
@@ -30,8 +30,8 @@ TEST(SinglyList, DeleteOddPos) {
 
 	std::list<int> listEl;
 	sl.getListElements(listEl);
-	std::list<int> addedList{2,4};
-	ASSERT_EQ(addedList == listEl, 1);
+	std::list<int> expectedResult{2,4};
+	ASSERT_EQ(expectedResult == listEl, 1);
 }
 
 TEST(SinglyList, DeleteEvenPos) {
@@ -44,8 +44,8 @@ TEST(SinglyList, DeleteEvenPos) {
 
 	std::list<int> listEl;
 	sl.getListElements(listEl);
-	std::list<int> addedList{1,3};
-	ASSERT_EQ(addedList == listEl, 1);
+	std::list<int> expectedResult{1,3};
+	ASSERT_EQ(expectedResult == listEl, 1);
 }
 
 TEST(SinglyList, Reverse) {
@@ -58,9 +58,24 @@ TEST(SinglyList, Reverse) {
 
 	std::list<int> listEl;
 	sl.getListElements(listEl);
-	std::list<int> addedList{4,3,2,1};
-	ASSERT_EQ(addedList == listEl, 1);
+	std::list<int> expectedResult{4,3,2,1};
+	ASSERT_EQ(expectedResult == listEl, 1);
 }
+
+TEST(SinglyList, RemoveNthFromEnd) {
+	SinglyList<int> sl;
+
+	std::list<int> l {1,2,3,4};
+	sl.push_back(l);
+
+	sl.removeNthFromEnd(2);
+	
+	std::list<int> listEl;
+	sl.getListElements(listEl);
+	std::list<int> expectedResult{1,2,4};
+	ASSERT_EQ(expectedResult == listEl, 1);
+}
+
 
 // Start here!
 int main(int ac, char **av) {

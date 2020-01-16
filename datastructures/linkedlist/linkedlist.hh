@@ -62,6 +62,9 @@ class SinglyList : public Node<T> {
 		// reverse a list
 		void reverse();
 
+		// delete nth node from the end of the list
+		void removeNthFromEnd(int n);
+
 		// get length of a list
 		unsigned int getLength() { return length; }
 

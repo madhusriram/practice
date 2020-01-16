@@ -61,6 +61,7 @@ void SinglyList<T>::push_back(std::list<T> v) {
 	}
 }
 
+
 // for debugging!
 template <typename T>
 void SinglyList<T>::traverseList() {
@@ -81,6 +82,50 @@ void SinglyList<T>::getListElements(std::list<T> &l) {
 		l.push_back(tmp->data);
 		tmp = tmp->next;
 	}	
+}
+
+// 1 2 3 4 5
+//
+// do not use the last pointer
+// should be harmless if there is no "n"th node from the end
+template <typename T>
+void SinglyList<T>::removeNthFromEnd(int n) {
+	Node<T> *tmp = list;
+	// advance this pointer only after having tmp moved further along the \
+	// list after "n" pos
+	Node<T> *deletePtr = list;
+	Node<T> *prev = nullptr;
+
+	int delta = 0;
+
+	if (list == nullptr)
+		return;
+
+	while (tmp != nullptr) {
+		tmp = tmp->next;
+		
+		if (delta < n)
+			delta++;
+		
+		// store the previous to help tie	
+		if (delta + 1 == n)
+			prev = deletePtr;
+
+		// start moving the deletePtr
+		if (delta == n) {
+			deletePtr = deletePtr->next;
+		}
+	}
+	// if first node
+	if (deletePtr == list) {
+		Node<T> *next = list->next;
+		delete(deletePtr);
+		list = next;
+	} else {
+		// else, just tie nodes
+		prev->next = deletePtr->next;
+		delete(deletePtr);
+	}
 }
 
 // Reverse a list
