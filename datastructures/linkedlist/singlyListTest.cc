@@ -65,14 +65,15 @@ TEST(SinglyList, Reverse) {
 TEST(SinglyList, RemoveNthFromEnd) {
 	SinglyList<int> sl;
 
-	std::list<int> l {1,2,3,4};
+	std::list<int> l {1};
 	sl.push_back(l);
 
 	sl.removeNthFromEnd(2);
-	
+	sl.traverseList();
+
 	std::list<int> listEl;
 	sl.getListElements(listEl);
-	std::list<int> expectedResult{1,2,4};
+	std::list<int> expectedResult{1};
 	ASSERT_EQ(expectedResult == listEl, 1);
 }
 

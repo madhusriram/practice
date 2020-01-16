@@ -100,19 +100,18 @@ void SinglyList<T>::removeNthFromEnd(int n) {
 
 	if (list == nullptr)
 		return;
-
-	while (tmp != nullptr) {
+	else if (list->next == nullptr && n > 1)
+		return;
+ 
+	while (tmp->next != nullptr) {
 		tmp = tmp->next;
 		
 		if (delta < n)
 			delta++;
 		
-		// store the previous to help tie	
-		if (delta + 1 == n)
-			prev = deletePtr;
-
 		// start moving the deletePtr
 		if (delta == n) {
+			prev = deletePtr;
 			deletePtr = deletePtr->next;
 		}
 	}
