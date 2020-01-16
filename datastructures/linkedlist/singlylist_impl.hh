@@ -84,6 +84,30 @@ void SinglyList<T>::getListElements(std::list<T> &l) {
 	}	
 }
 
+// return data at the center of the list
+// move one pointer by 1 and the other by 2
+// tortoise and hare logic
+template <typename T>
+T SinglyList<T>::middleOfList() {
+	Node<T> *fastptr = list;
+	Node<T> *slowptr = list;
+
+	if (list == nullptr || list->next == nullptr)
+		return T(-1);
+
+	fastptr = fastptr->next;
+	
+	while (fastptr != nullptr) {
+		if (fastptr->next != nullptr)
+			fastptr = fastptr->next->next;
+		else
+			break;
+		slowptr = slowptr->next;
+	}
+
+	return slowptr->data;
+}
+
 // 1 2 3 4 5
 //
 // do not use the last pointer

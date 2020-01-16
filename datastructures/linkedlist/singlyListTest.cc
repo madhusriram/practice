@@ -77,6 +77,17 @@ TEST(SinglyList, RemoveNthFromEnd) {
 	ASSERT_EQ(expectedResult == listEl, 1);
 }
 
+TEST(SinglyList, MiddleOfList) {
+	SinglyList<int> sl;
+
+	std::list<int> l{1,2,3};
+	sl.push_back(l);
+
+	int expectedResult = sl.middleOfList();
+	std::cout << expectedResult << std::endl;
+
+	ASSERT_EQ(expectedResult == 2, 1);
+}
 
 // Start here!
 int main(int ac, char **av) {

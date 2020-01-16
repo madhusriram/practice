@@ -65,6 +65,9 @@ class SinglyList : public Node<T> {
 		// delete nth node from the end of the list
 		void removeNthFromEnd(int n);
 
+		// return data at the center of the list
+		T middleOfList();
+
 		// get length of a list
 		unsigned int getLength() { return length; }
 
