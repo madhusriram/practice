@@ -7,5 +7,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # Link "tests" with what we want to test and the GTest and pthread library
 add_executable(doublyCircularTests doublyCircularListTest.cc)
 add_executable(singlyListTests singlyListTest.cc)
+add_executable(lruTest lruTest.cc)
 target_link_libraries(doublyCircularTests ${GTEST_LIBRARIES} pthread)
 target_link_libraries(singlyListTests  ${GTEST_LIBRARIES} pthread)
+target_link_libraries(lruTest ${GTEST_LIBRARIES} pthread)

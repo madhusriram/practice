@@ -6,4 +6,5 @@ cmake ../
 make
 ./doublyCircularTests
 ./singlyListTests
+./lruTest
 cd ../ && rm -rf build

@@ -43,6 +43,45 @@ void DoublyCircularLinkedList<T>::addToList(std::list<T> l) {
 	}
 }
 
+// add to front of list
+template <typename T>
+void DoublyCircularLinkedList<T>::addToFront(T v) {
+	Node<T> *tmp = Node<T>::createNode(v);
+
+	// if the first node
+	if (list == nullptr) {
+		tmp->prev = tmp;
+		tmp->next = tmp;
+		list = tmp;
+		return;
+	}
+
+	// append to front now!
+	tmp->next = list;
+	tmp->prev = list->prev;
+	list->prev->next = tmp;
+	list->prev = tmp;
+	list = tmp;
+}
+
+// remove the tail node
+template <typename T>
+void DoublyCircularLinkedList<T>::removeTail() {
+	if (list == nullptr) {
+		return;
+	} else if (list->next == list) {
+		delete list;
+	}
+
+	Node<T> *deleteNode = list->prev;
+	Node<T> *prev = list->prev->prev;
+	Node<T> *next = list;
+	list->prev = prev;
+	prev->next = list;
+
+	delete(deleteNode);
+}
+
 // Just to debug
 template <typename T>
 void DoublyCircularLinkedList<T>::traverseCircularList() {
@@ -50,7 +89,7 @@ void DoublyCircularLinkedList<T>::traverseCircularList() {
 
 	// run until you start looping over
 	while ( tmp != nullptr ) {
-		std::cout << tmp->data << " "; 
+		std::cout << tmp->data << " " << std::endl; 
 		tmp = tmp->next;
 	
 		if ( isEndOfList(tmp, list) ) 
@@ -95,6 +134,7 @@ inline bool DoublyCircularLinkedList<T>::isEndOfList(Node<T> *a, Node<T> *b) {
 	if (a == b) {
 		return true;
 	}
+
 	return false;
 }
 

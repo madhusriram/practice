@@ -113,6 +113,9 @@ class DoublyCircularLinkedList {
 		// add to list from a list
 		void addToList(const std::list<T>);
 
+		// add to front of the list
+		void addToFront(T v);
+
 		// traverse the list
 		void traverseCircularList();
 
@@ -142,6 +145,9 @@ class DoublyCircularLinkedList {
 
 		// length of the list
 		unsigned int length();
+
+		// remove last node
+		void removeTail();
 	private:
 		// is end of list
 		bool isEndOfList(Node<T> *, Node<T> *);
@@ -150,7 +156,24 @@ class DoublyCircularLinkedList {
 		void deleteNode(Node<T> *tmp);
 };
 
+template <typename T>
+class LRU : public DoublyCircularLinkedList<T> {
+	public:
+		LRU(unsigned int len = 0) : cacheLen(len) {};
+
+
+		// adds to cache
+		void addToCache(const std::list<T> &);
+
+
+		void getCacheVal(std::list<T> &);
+	
+	private:
+		unsigned int cacheLen;
+};
+
 #include "doublycircular_impl.hh"
 #include "singlylist_impl.hh"
+#include "lru_impl.hh"
 
 #endif // _LINKEDLIST_H_
