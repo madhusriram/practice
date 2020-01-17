@@ -69,7 +69,6 @@ TEST(SinglyList, RemoveNthFromEnd) {
 	sl.push_back(l);
 
 	sl.removeNthFromEnd(2);
-	sl.traverseList();
 
 	std::list<int> listEl;
 	sl.getListElements(listEl);
@@ -84,9 +83,58 @@ TEST(SinglyList, MiddleOfList) {
 	sl.push_back(l);
 
 	int expectedResult = sl.middleOfList();
-	std::cout << expectedResult << std::endl;
 
 	ASSERT_EQ(expectedResult == 2, 1);
+}
+
+// Sum of lists
+TEST(SinglyList, SumList) {
+	SinglyList<int> l1;
+	SinglyList<int> l2;
+	SinglyList<int> sum;
+
+	// l1 and l2 not empty
+	std::list<int> l1list{1,2,3,4};
+	l1.push_back(l1list);
+	std::list<int> l2list{1,2,3,4};
+	l2.push_back(l2list);
+
+	l1.sumLists(l2, sum);
+
+	std::list<int> listEl;
+	sum.getListElements(listEl);
+	std::list<int> expected {2,4,6,8};
+
+	ASSERT_EQ(expected == listEl, 1);
+	
+	// l1 == null but not l2
+	SinglyList<int> l3;
+	SinglyList<int> l4;
+	SinglyList<int> sum2;
+	l3.push_back(l1list);
+
+	l3.sumLists(l4, sum2);
+
+	listEl.clear();
+	sum2.getListElements(listEl);
+	expected = {1,2,3,4};
+	
+	ASSERT_EQ(expected == listEl, 1);
+
+	// no need to delete sum since it would be l2
+	
+	SinglyList<int> l5;
+	SinglyList<int> l6;
+	SinglyList<int> sum3;
+
+	l6.push_back(l2list);
+
+	l5.sumLists(l6, sum3);
+	listEl.clear();
+	sum3.getListElements(listEl);
+	expected = {1,2,3,4};
+
+	ASSERT_EQ(expected == listEl, 1);
 }
 
 // Start here!

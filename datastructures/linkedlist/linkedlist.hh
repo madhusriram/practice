@@ -71,7 +71,14 @@ class SinglyList : public Node<T> {
 		// get length of a list
 		unsigned int getLength() { return length; }
 
+		// TODO
 		void sortList();
+
+		// sum 2 lists
+		void sumLists(SinglyList<T>&, SinglyList<T>& );
+
+		// is a palindrome?
+		bool isPalindrome();
 
 		// sort and join two lists
 		void sortAndJoinTwoLists();
@@ -126,9 +133,11 @@ class DoublyCircularLinkedList {
 		void splitCircularLists(DoublyCircularLinkedList &);
 
 		// delete odd positions
+		// TODO
 		void deleteOddPos();
 
 		// delete even positions
+		// TODO
 		void deleteEvenPos();
 
 		// delete the list;

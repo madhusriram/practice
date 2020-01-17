@@ -74,6 +74,63 @@ void SinglyList<T>::traverseList() {
 	std::cout << std::endl;	
 }
 
+// sum list1 and list2 and return a new list object
+template <typename T>
+void SinglyList<T>::sumLists(SinglyList<T>& l, SinglyList<T> &sumList) {
+	Node<T> *l2 = l.list;
+
+	if (list == nullptr && l2 != nullptr) {
+		sumList = l;
+		return;
+	}
+	else if (l2 == nullptr && list != nullptr) {
+		sumList = *this;
+		return;
+	}
+	else if (l2 == nullptr && list == nullptr) {
+		return;
+	}
+
+	// now try to add
+	Node<T> *l1 = list;
+
+	int carry = 0;
+	int d1 = 0;
+	int d2 = 0;
+	bool isEndOfList1 = false;
+
+	while (true) {	
+		if (l1 != nullptr) {
+			d1 = l1->data;
+			l1 = l1->next;
+		} else {
+			isEndOfList1 = true;
+		}
+
+		if (l2 != nullptr) {
+			d2 = l2->data;
+			l2 = l2->next;
+		} else if (isEndOfList1) { // both lists are done, exit!
+			break;
+		}
+
+		// calculate sum now!
+		int sum = d1 + d2 + carry;
+		int res = sum % 10;
+		int carry = sum / 10;
+		// add to list
+		sumList.push_back(res);
+	}
+	// still might have a carry left over at the end, add it!
+	if (carry != 0)
+		sumList.push_back(carry);
+}
+
+template <typename T>
+bool SinglyList<T>::isPalindrome() {
+
+}
+
 template <typename T>
 void SinglyList<T>::getListElements(std::list<T> &l) {
 	Node<T> *tmp = list;
