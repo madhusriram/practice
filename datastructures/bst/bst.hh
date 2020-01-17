@@ -16,44 +16,61 @@ struct Node {
 		n->data = d;
 		n->left = nullptr;
 		n->right = nullptr;
+
+		return n;
 	}
 };
 
 template <typename T>
 class Tree {
 public:
+	Node<T> *root = nullptr;
+
+	virtual void insert(T );
+
+	T getVal(Node<T> *);
+
+	void levelOrder();
+
 	void printInOrder();
 
 	void printPostOrder();
 
 	void printPreOrder();
+
+	unsigned int getLength();
 };
 
 // Unbalanced tree
 template <typename T>
-class BST : public Tree {
+class BST : public Tree<T> {
 	public:
-		// root node
-		struct Node<T> *root = nullptr;
-
 		// insert to the tree
 		void insert(T );
+	
+	private:
+		void insert(T , Node<T> *);
+
+		void insertLeft(T, Node<T> *);
+
+		void insertRight(T, Node<T> *);
 };
 
 // AVL tree
 template <typename T>
-class AVL : public Tree {
-
+class AVL : public Tree<T> {
+	public:
+		void insert(T );
 
 };
 
 // RED BLACK tree
 template <typename T>
-class RBT : public Tree {
-
-
+class RBT : public Tree<T> {
+	public:
+		void insert(T );
 };
 
-#include "bst.cc"
+#include "bst_impl.hh"
 
 #endif

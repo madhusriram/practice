@@ -2,16 +2,17 @@
 #include <gtest/gtest.h>
 
 // test sorted order
-// TEST(BSTUnordered, SortedOrder) {
-	BST<int> tree;
+TEST(BSTUnbalanced, SortedOrder) {
+	BST<int> bst;
 
-	ASSERT_EQ(0, tree.length());
+	//ASSERT_EQ(0, tree.length());
 
-	tree.addToTree(10);
-	tree.addToTree(8);
-	tree.addToTree(12);
+	bst.insert(10);
+	bst.insert(8);
+	bst.insert(12);
+	bst.levelOrder();
 
-	ASSERT_EQ(3, tree.length());
+	//ASSERT_EQ(3, tree.length());
 }
 
 // Start here!
