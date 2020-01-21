@@ -1,4 +1,5 @@
 #include <queue>
+#include "bst.hh"
 
 template <typename T>
 T Tree<T>::getVal(Node<T> *n) {
@@ -8,7 +9,7 @@ T Tree<T>::getVal(Node<T> *n) {
 // level order traversal of the tree
 // put elements in a queue
 template <typename T>
-void Tree<T>::levelOrder() {
+void Tree<T>::levelOrder(std::list<T>& out) {
 	std::queue<Node<T> *> q;
 
 	Node<T> *tmp = root;
@@ -19,8 +20,7 @@ void Tree<T>::levelOrder() {
 	while (! q.empty()) {
 		Node<T> *n = q.front();
 
-		std::cout << n->data << " " ;
-		
+		out.push_back(n->data);
 		if (n->left != nullptr)
 			q.push(n->left);
 		if (n->right != nullptr)
@@ -28,7 +28,44 @@ void Tree<T>::levelOrder() {
 
 		q.pop();
 	}
-	std::cout << std::endl;
+}
+
+// in order printer helper
+template <typename T>
+void Tree<T>::recurseInOrder(std::list<T>& q, Node<T>* n) {
+	if (n == nullptr)
+		return;
+	
+	recurseInOrder(q, n->left);
+	q.push_back(n->data);
+	recurseInOrder(q, n->right);	
+}
+
+// post order helper
+template <typename T>
+void Tree<T>::recursePostOrder(std::list<T>& q, Node<T>* n) {
+	if (n == nullptr)
+		return;
+
+	recursePostOrder(q, n->left);
+	recursePostOrder(q, n->right);
+	q.push_back(n->data);
+}
+
+// in order
+template <typename T>
+void Tree<T>::printInOrder(std::list<T>& out) {
+	Node<T> *tmp = root;
+
+	recurseInOrder(out, tmp);
+}
+
+// post order
+template <typename T>
+void Tree<T>::printPostOrder(std::list<T>& out) {
+	Node<T> *tmp = root;
+	
+	recursePostOrder(out, tmp);
 }
 
 template <typename T>

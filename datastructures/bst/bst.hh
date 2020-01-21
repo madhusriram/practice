@@ -4,6 +4,7 @@
 #define	_BST_H_
 
 #include <iostream>
+#include <list>
 
 template <typename T>
 struct Node {
@@ -30,15 +31,17 @@ public:
 
 	T getVal(Node<T> *);
 
-	void levelOrder();
+	void levelOrder(std::list<T> &);
 
-	void printInOrder();
+	void printInOrder(std::list<T> &);
 
-	void printPostOrder();
-
-	void printPreOrder();
+	void printPostOrder(std::list<T> &);
 
 	unsigned int getLength();
+
+private:
+	void recurseInOrder(std::list<T>&, Node<T>* );
+	void recursePostOrder(std::list<T>&, Node<T>* );
 };
 
 // Unbalanced tree

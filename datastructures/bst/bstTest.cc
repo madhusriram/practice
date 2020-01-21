@@ -1,18 +1,29 @@
 #include "bst.hh"
 #include <gtest/gtest.h>
+#include <list>
 
 // test sorted order
-TEST(BSTUnbalanced, SortedOrder) {
+TEST(BSTUnbalanced, TreePrint) {
 	BST<int> bst;
-
-	//ASSERT_EQ(0, tree.length());
 
 	bst.insert(10);
 	bst.insert(8);
 	bst.insert(12);
-	bst.levelOrder();
+	
+	std::list<int> out;
+	bst.levelOrder(out);
+	std::list<int> expectedlevel{10,8,12};
+	ASSERT_EQ(out == expectedlevel, 1);
+	out.clear();
 
-	//ASSERT_EQ(3, tree.length());
+	bst.printInOrder(out);
+	std::list<int> expectedIn{8,10,12};
+	ASSERT_EQ(out == expectedIn, 1);
+	out.clear();
+
+	bst.printPostOrder(out);
+	std::list<int> expectedOut{8,12,10};
+	ASSERT_EQ(out == expectedOut, 1);
 }
 
 // Start here!
