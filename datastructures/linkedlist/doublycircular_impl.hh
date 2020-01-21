@@ -45,7 +45,7 @@ void DoublyCircularLinkedList<T>::addToList(std::list<T> l) {
 
 // add to front of list
 template <typename T>
-void DoublyCircularLinkedList<T>::addToFront(T v) {
+void DoublyCircularLinkedList<T>::addToFront(const T v) {
 	Node<T> *tmp = Node<T>::createNode(v);
 
 	// if the first node
@@ -96,6 +96,22 @@ void DoublyCircularLinkedList<T>::traverseCircularList() {
 			break;
 	}
 	std::cout << std::endl;
+}
+
+// traverses through the list until the end is reached, cheap iterator pattern
+// disadvantage: can only be used only once in the program
+// advantage: Simple, and I do not know to implement an iterator pattern in C++
+template <typename T>
+struct Node<T> *DoublyCircularLinkedList<T>::traverse() {
+	static Node<T> *tmp = list;
+
+	if (tmp != nullptr) {
+		auto ret = tmp;
+		tmp = tmp->next;
+		if (isEndOfList(tmp, list))
+			return nullptr;
+		return ret;
+	}
 }
 
 // this could be done easier by tracking the length during adds but

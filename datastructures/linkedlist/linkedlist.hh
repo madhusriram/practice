@@ -94,20 +94,6 @@ class SinglyList : public Node<T> {
 		unsigned int length;
 };
 
-/*
-template <typename T>
-class DoublyLinkedList : public Node<T> {
-	public:
-		// set data
-		void addNode(T);
-
-		// traverse the list
-		void traverseList();
-
-		void sortList();
-};
-
-*/
 template <typename T>
 class DoublyCircularLinkedList {
 	public:
@@ -121,10 +107,13 @@ class DoublyCircularLinkedList {
 		void addToList(const std::list<T>);
 
 		// add to front of the list
-		void addToFront(T v);
+		void addToFront(const T v);
 
 		// traverse the list
 		void traverseCircularList();
+
+		// traverses and returns current node
+		struct Node<T> *traverse();
 
 		// link 2 circular lists
 		void linkTwoLists(DoublyCircularLinkedList<T> &);
@@ -165,18 +154,21 @@ class DoublyCircularLinkedList {
 		void deleteNode(Node<T> *tmp);
 };
 
+// Operations supported are addToCache() and getCacheVal()
 template <typename T>
 class LRU : public DoublyCircularLinkedList<T> {
 	public:
 		LRU(unsigned int len = 0) : cacheLen(len) {};
 
-
 		// adds to cache
 		void addToCache(const std::list<T> &);
 
+		void addToCache(const T );
 
-		void getCacheVal(std::list<T> &);
-	
+		// gets cache value
+		// true if the data exists and false otherwise
+		bool getCacheVal(T );		
+
 	private:
 		unsigned int cacheLen;
 };
