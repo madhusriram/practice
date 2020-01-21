@@ -14,4 +14,4 @@ fi
 docker run --rm  -v ${PWD}:/source -it ${IMG_NAME}
 
 # Blow up the build directory
-rm -rf build
+#rm -rf build
