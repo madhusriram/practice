@@ -1,4 +1,5 @@
 #include <queue>
+#include <stack>
 #include "bst.hh"
 
 template <typename T>
@@ -58,6 +59,36 @@ void Tree<T>::printInOrder(std::list<T>& out) {
 	Node<T> *tmp = root;
 
 	recurseInOrder(out, tmp);
+}
+
+// no recursion but uses stack
+// depth-first - in-order
+template <typename T>
+void Tree<T>::printInOrderWithStack(std::list<T> &out) {
+	Node<T> *tmp = root;
+	std::stack<Node<T> *> s;
+
+	while (tmp || !s.empty()) {
+	
+		// add to stack left subtree
+		while (tmp) {
+			s.push(tmp);
+			tmp = tmp->left;
+		}
+		Node<T> *top = s.top();
+		out.push_back(top->data);
+		s.pop();
+
+		// add right subtree now!
+		tmp = top->right;
+	}
+}
+
+// Recursive depth first requires a stack space equal to the length of the
+// tree height which might be considerable if the tree is unbalanced.
+template <typename T>
+void Tree<T>::printInOrderWithoutRecursion(std::list<T> &out) {
+
 }
 
 // post order

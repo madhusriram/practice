@@ -31,10 +31,18 @@ public:
 
 	T getVal(Node<T> *);
 
+	// level order tree traversal
 	void levelOrder(std::list<T> &);
 
+	// recusive in order tree traversal
 	void printInOrder(std::list<T> &);
 
+	// TODO without recursion in order tree traversal
+	void printInOrderWithoutRecursion(std::list<T> &);
+
+	void printInOrderWithStack(std::list<T> &);
+
+	// post order tree traversal using recursion
 	void printPostOrder(std::list<T> &);
 
 	unsigned int getLength();

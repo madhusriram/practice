@@ -24,6 +24,12 @@ TEST(BSTUnbalanced, TreePrint) {
 	bst.printPostOrder(out);
 	std::list<int> expectedOut{8,12,10};
 	ASSERT_EQ(out == expectedOut, 1);
+	out.clear();
+
+	bst.printInOrderWithStack(out);
+	ASSERT_EQ(out == expectedIn, 1);
+	out.clear();
+
 }
 
 // Start here!
