@@ -29,7 +29,18 @@ TEST(BSTUnbalanced, TreePrint) {
 	bst.printInOrderWithStack(out);
 	ASSERT_EQ(out == expectedIn, 1);
 	out.clear();
+}
 
+TEST(BuildTree, BuildTreeFromArr) {
+	Tree<int> t;
+	
+	const int arr[] = {1,2,3,4,5,6,7};
+	t.buildTree(arr);
+	
+	std::list<int> out;
+	t.levelOrder(out);
+	std::list<int> expectedLevel{1,2,3,4,5,6,7};
+	ASSERT_EQ(out == expectedLevel, 1);
 }
 
 // Start here!

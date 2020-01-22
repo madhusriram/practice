@@ -7,6 +7,45 @@ T Tree<T>::getVal(Node<T> *n) {
 	return n->data;
 }
 
+// build tree with an array input, without recursion, but, uses additional space
+template <typename T>
+void Tree<T>::buildTree(const T *arr) {
+	int array_len = sizeof(arr)/arr[0];
+
+	// {1,2,3,4,5,6,7} - tree
+	// {0,1,2,3,4,5,6} - index
+	// for k-levels, the total number of nodes will be 2^k - 1
+	// How to find values in the array?
+	// With array_len we can find out the number of levels, k.
+	
+	std::queue<Node<T> *> q;
+	root = Node<T>::createNode(arr[0]);
+	q.push(root);
+	int left = 0;
+	int right = 0;
+	int start = 0;
+	int end = array_len - 1;
+
+	// while traversing the array we would only need to traverse half the list
+	int mid = end / 2;
+
+	while (start < mid) {
+		left = (2 * start) + 1;
+		Node<T> *n = q.front();
+		q.pop();
+
+		n->left = Node<T>::createNode(arr[left]);
+		q.push(n->left);
+	
+		// add right	
+		right = (2*start) + 2;
+		n->right = Node<T>::createNode(arr[right]);
+		q.push(n->right);
+		
+		start++;
+	}
+}
+
 // level order traversal of the tree
 // put elements in a queue
 template <typename T>
@@ -29,6 +68,33 @@ void Tree<T>::levelOrder(std::list<T>& out) {
 
 		q.pop();
 	}
+}
+
+// connect to next node
+// https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+// Output: level order print with null next indicated as a '#'
+// 			1->#
+// 		 2   ->  3 -> #
+//    4 -> 5 -> 6 -> 7 -> #   
+template <typename T>
+void Tree<T>::connectToNext() {
+	Node<T> *tmp = root;
+	Node<T> *first = nullptr;
+	Node<T> *second = nullptr;
+
+	std::stack<Node<T> *> s;
+	
+	s.push(tmp);
+
+
+
+}
+
+// Do a new kind of Bread first search printing nodes with connected next
+// but traversing level order
+template <typename T>
+void Tree<T>::printNextTree() {
+
 }
 
 // in order printer helper

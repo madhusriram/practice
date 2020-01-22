@@ -11,12 +11,14 @@ struct Node {
 	T data;
 	Node<T> *left;
 	Node<T> *right;
+	Node<T> *next; 		// used only for 1 leetcode problem
 
 	static Node<T> *createNode(T d) {
 		Node<T> *n = new(Node<T>);
 		n->data = d;
 		n->left = nullptr;
 		n->right = nullptr;
+		n->next = nullptr;
 
 		return n;
 	}
@@ -26,8 +28,6 @@ template <typename T>
 class Tree {
 public:
 	Node<T> *root = nullptr;
-
-	virtual void insert(T );
 
 	T getVal(Node<T> *);
 
@@ -40,12 +40,23 @@ public:
 	// TODO without recursion in order tree traversal
 	void printInOrderWithoutRecursion(std::list<T> &);
 
+	// TODO build binary tree with an array as input
+	void buildTree(const T *arr);
+
+	// No recursion but replicate call-stack with a stack
 	void printInOrderWithStack(std::list<T> &);
 
 	// post order tree traversal using recursion
 	void printPostOrder(std::list<T> &);
 
+	// connect each node to its right node
+	void connectToNext();
+
+	// print next connected complete binary tree
+	void printNextTree();
+
 	unsigned int getLength();
+
 
 private:
 	void recurseInOrder(std::list<T>&, Node<T>* );
@@ -65,6 +76,8 @@ class BST : public Tree<T> {
 		void insertLeft(T, Node<T> *);
 
 		void insertRight(T, Node<T> *);
+
+
 };
 
 // AVL tree

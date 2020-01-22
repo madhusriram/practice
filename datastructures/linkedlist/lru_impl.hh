@@ -40,7 +40,6 @@ bool LRU<T>::getCacheVal(T val) {
 			return false;
 		// if found in the list
 		// move it to the head
-		std::cout << n->data << " " << val << std::endl;
 		if (n->data == val) {
 			Node<T> *savenext = n->next;
 			Node<T> *saveprev = n->prev;
