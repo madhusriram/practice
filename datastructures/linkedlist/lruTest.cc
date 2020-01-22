@@ -20,8 +20,6 @@ TEST(Lru, TestWithCacheHits) {
 	EXPECT_EQ(res == true, 1);	// cache hit
 	std::list<int> cache;
 	std::list<int> expected{4,5,3,2,1};
-	lru.traverseCircularList();
-
 	lru.getListElements(cache);	// get state of the cache
 	EXPECT_EQ(cache == expected, 1);
 
@@ -31,7 +29,6 @@ TEST(Lru, TestWithCacheHits) {
 	lru.addToCache(6);
 	lru.getListElements(cache);
 	EXPECT_EQ(cache == expected, 1);
-	lru.traverseCircularList();
 }
 
 // Start here!

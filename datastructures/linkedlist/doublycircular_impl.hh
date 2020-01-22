@@ -89,7 +89,7 @@ void DoublyCircularLinkedList<T>::traverseCircularList() {
 
 	// run until you start looping over
 	while ( tmp != nullptr ) {
-		std::cout << tmp->data << " " << std::endl; 
+		std::cout << tmp->data << " "; 
 		tmp = tmp->next;
 	
 		if ( isEndOfList(tmp, list) ) 

@@ -50,7 +50,7 @@ bool LRU<T>::getCacheVal(T val) {
 			// add to the front
 			n->prev = this->list->prev;
 			this->list->prev->next = n;
-			n->next = this->list->next;
+			n->next = this->list;
 			this->list = n;	
 			return true;
 		}
