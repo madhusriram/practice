@@ -6,7 +6,7 @@ cmake ../
 make
 
 # BST
-./bst/printBST
+./bst/bstTests
 
 # Linked list
 ./linkedlist/doublyCircularTests

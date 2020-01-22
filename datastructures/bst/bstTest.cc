@@ -43,6 +43,21 @@ TEST(BuildTree, BuildTreeFromArr) {
 	ASSERT_EQ(out == expectedLevel, 1);
 }
 
+// testing https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+TEST(BuildTreeWithNextPointers, PrintTreeWithNextPointers) {
+	Tree<int> t;
+
+	const int arr[] = {1,2,3,4,5,6,7};
+	t.buildTree(arr);
+
+	t.buildNextTree();
+	std::string res;
+	std::string expected ("1 # 2 3 # 4 5 6 7 #");
+	t.printNextTree(res);
+
+	ASSERT_EQ(res == expected, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <list>
+#include <string>
 
 template <typename T>
 struct Node {
@@ -49,11 +50,11 @@ public:
 	// post order tree traversal using recursion
 	void printPostOrder(std::list<T> &);
 
-	// connect each node to its right node
-	void connectToNext();
+	// connect each node to its right node from an existing complete binary tree
+	void buildNextTree();
 
 	// print next connected complete binary tree
-	void printNextTree();
+	void printNextTree(std::string &);
 
 	unsigned int getLength();
 

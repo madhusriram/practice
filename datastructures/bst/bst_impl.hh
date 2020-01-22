@@ -76,25 +76,67 @@ void Tree<T>::levelOrder(std::list<T>& out) {
 // 			1->#
 // 		 2   ->  3 -> #
 //    4 -> 5 -> 6 -> 7 -> #   
+// One-way to do this is to do breadth first search, put all elements in a queue,
+// and re-iterate them. This is O(2N) operation
 template <typename T>
-void Tree<T>::connectToNext() {
+void Tree<T>::buildNextTree() {
 	Node<T> *tmp = root;
-	Node<T> *first = nullptr;
-	Node<T> *second = nullptr;
+	Node<T> *prev = nullptr;
 
-	std::stack<Node<T> *> s;
-	
-	s.push(tmp);
+	std::queue<Node<T> *> q;
+	q.push(tmp);
 
+	int i = 0;
+	int nodesInLevel = 0;
 
+	while (!q.empty()) {
+		nodesInLevel = 1 << i;
+		for (int j = 0; j < nodesInLevel; j++) {
+ 			Node<T> *n = q.front();
+			q.pop();
+			if (prev != nullptr)
+				prev->next = n;
+			
+			if (n->left && n->right) {
+				q.push(n->left);
+				q.push(n->right);
+			}
 
+			prev = n;			
+		}
+		prev = nullptr;
+
+		i++;
+	}
 }
 
-// Do a new kind of Bread first search printing nodes with connected next
+// Do a new kind of Breadth first search printing nodes with connected next
 // but traversing level order
+// The tree in connectToNext() should be printed as 1 # 2 3 # 4 5 6 7 #
 template <typename T>
-void Tree<T>::printNextTree() {
+void Tree<T>::printNextTree(std::string& res) {
+	std::queue<Node<T> *> q;
+	Node<T> *tmp = root;
+	// push root first
+	q.push(tmp);
 
+	while (! q.empty()) {
+		Node<T> *n = q.front();
+		res.append(std::to_string(n->data));
+		res.append(" ");
+		if (n->next == nullptr) {
+			res.append("# ");
+		}
+		if (n->left && n->right) {
+			q.push(n->left);
+			q.push(n->right);
+		}
+
+		q.pop();
+	}
+	// remove trailing " "
+	std::cout << res << std::endl;
+	res.pop_back();
 }
 
 // in order printer helper

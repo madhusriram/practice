@@ -11,7 +11,7 @@ if [[ "$(docker images -q testimg 2> /dev/null)" == "" ]] || [[ $1 == "-f" ]]; t
 fi
 
 # Run it now by mapping the volume of interest
-docker run --rm  -v ${PWD}:/source -it ${IMG_NAME}
+docker run --rm  -v ${PWD}:/source -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined ${IMG_NAME}
 
 # Blow up the build directory
 #rm -rf build
