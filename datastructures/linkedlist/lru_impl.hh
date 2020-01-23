@@ -8,53 +8,54 @@ void LRU<T>::addToCache(const std::list<T>& l) {
 	// add to the front
 	for (typename std::list<T>::const_iterator it = l.begin(); it != l.end(); it++) {
 		// remove at the tail and add at the front
-		if (i >= cacheLen) {
+		if (activeCacheLen >= cacheLen) {
 			this->removeTail();
-			i--;
+			cacheMap.erase(i);
+			activeCacheLen--;
 		}
 		// good to add to the front
-		this->addToFront(*it);
+		Node<T> *n = this->addToFront(*it);
+		cacheMap[i] = n;
+		activeCacheLen++;
 		i++;
 	}
 }
 
-// same as above but just adds one
+// same as above but just adds one key,val
 template <typename T>
-void LRU<T>::addToCache(const T val) {
-	this->removeTail();
-	this->addToFront(val);
+void LRU<T>::addToCache(const T k, const T v) {
+	// remove only if the cache is full
+	if (activeCacheLen >= cacheLen) {
+		this->removeTail();
+		cacheMap.erase(activeCacheLen);
+	}
+
+	// if key already present move to head
+	// else add at the front
+	if (cacheMap.find(k) == cacheMap.end()) {
+		Node<T> *n = this->addToFront(v);
+		cacheMap[k] = n;
+	} else {
+		this->moveToFront(cacheMap[k]);
+	}
 }
 
 // return true of val is in the cache and, update the cache elements
 // false if element is not found
 // scroll through the list, if val found update the list so that val is at
 // the start of the list. This method operates in O(n) time
+// (OR)
+// Use a map to index in to the list to find the value else return -1
 template <typename T>
-bool LRU<T>::getCacheVal(T val) {
-	// traverseble copy of the list;
-	Node<T> *tmp = this->list;
-
-	while (true) {
-		Node<T> *n = this->traverse();
-		if (n == nullptr)
-			return false;
-		// if found in the list
-		// move it to the head
-		if (n->data == val) {
-			Node<T> *savenext = n->next;
-			Node<T> *saveprev = n->prev;
-			savenext->prev = saveprev;
-			saveprev->next = savenext;
-
-			// add to the front
-			n->prev = this->list->prev;
-			this->list->prev->next = n;
-			n->next = this->list;
-			this->list = n;	
-			return true;
-		}
-
+bool LRU<T>::getCacheVal(T k, T &out) {
+	// did not find!
+	if (cacheMap.find(k) == cacheMap.end()) {
+		return false;
 	}
+		
+	// if found, move that node to the front
+	this->moveToFront(cacheMap[k]);
+	out = this->getVal(cacheMap[k]);
 
-
+	return true;
 }

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <list>
+#include <map>
 
 template <typename T>
 struct Node {
@@ -107,7 +108,11 @@ class DoublyCircularLinkedList {
 		void addToList(const std::list<T>);
 
 		// add to front of the list
-		void addToFront(const T v);
+		// return the node added so that lru cache gets to access in O(1)
+		Node<T> *addToFront(const T v);
+
+		// given pointer to a node on the list move it to the front
+		void moveToFront(Node<T> *);
 
 		// traverse the list
 		void traverseCircularList();
@@ -120,6 +125,9 @@ class DoublyCircularLinkedList {
 
 		// split list
 		void splitCircularLists(DoublyCircularLinkedList &);
+
+		// get value of a node
+		T getVal(Node<T> *);
 
 		// delete odd positions
 		// TODO
@@ -158,19 +166,27 @@ class DoublyCircularLinkedList {
 template <typename T>
 class LRU : public DoublyCircularLinkedList<T> {
 	public:
-		LRU(unsigned int len = 0) : cacheLen(len) {};
+		LRU(unsigned int len = 0) : cacheLen(len), activeCacheLen(0) {};
 
-		// adds to cache
+		// map indexing the linked list
+		std::map<T, Node<T> *> cacheMap;
+
+		// adds to cache multiple values
+		// keys would be the index of the list
 		void addToCache(const std::list<T> &);
 
-		void addToCache(const T );
+		// adds to cache single key
+		void addToCache(const T , const T v);
 
-		// gets cache value
-		// true if the data exists and false otherwise
-		bool getCacheVal(T );		
+		// gets cache value from the key
+		// if key already present, moves the value to the head of the cache
+		// if key not present returns false
+		bool getCacheVal(T , T& out);
 
 	private:
 		unsigned int cacheLen;
+
+		unsigned int activeCacheLen;
 };
 
 #include "doublycircular_impl.hh"

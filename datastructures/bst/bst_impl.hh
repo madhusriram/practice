@@ -78,6 +78,7 @@ void Tree<T>::levelOrder(std::list<T>& out) {
 //    4 -> 5 -> 6 -> 7 -> #   
 // One-way to do this is to do breadth first search, put all elements in a queue,
 // and re-iterate them. This is O(2N) operation
+// Works only for a complete binary tree
 template <typename T>
 void Tree<T>::buildNextTree() {
 	Node<T> *tmp = root;
@@ -135,7 +136,6 @@ void Tree<T>::printNextTree(std::string& res) {
 		q.pop();
 	}
 	// remove trailing " "
-	std::cout << res << std::endl;
 	res.pop_back();
 }
 

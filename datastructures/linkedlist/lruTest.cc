@@ -15,9 +15,13 @@ TEST(Lru, TestWithCacheMiss) {
 
 TEST(Lru, TestWithCacheHits) {
 	LRU<int> lru(5);
+	int out;
+
 	lru.addToCache(std::list<int>{1,2,3,4,5});
-	bool res = lru.getCacheVal(4);
+	bool res = lru.getCacheVal(3, out);
 	EXPECT_EQ(res == true, 1);	// cache hit
+	EXPECT_EQ(out == 4, 1);
+
 	std::list<int> cache;
 	std::list<int> expected{4,5,3,2,1};
 	lru.getListElements(cache);	// get state of the cache
@@ -26,7 +30,7 @@ TEST(Lru, TestWithCacheHits) {
 	expected.clear();
 	cache.clear();
 	expected = {6,4,5,3,2};
-	lru.addToCache(6);
+	lru.addToCache(5,6);
 	lru.getListElements(cache);
 	EXPECT_EQ(cache == expected, 1);
 }

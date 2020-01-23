@@ -45,7 +45,7 @@ void DoublyCircularLinkedList<T>::addToList(std::list<T> l) {
 
 // add to front of list
 template <typename T>
-void DoublyCircularLinkedList<T>::addToFront(const T v) {
+Node<T> *DoublyCircularLinkedList<T>::addToFront(const T v) {
 	Node<T> *tmp = Node<T>::createNode(v);
 
 	// if the first node
@@ -53,7 +53,7 @@ void DoublyCircularLinkedList<T>::addToFront(const T v) {
 		tmp->prev = tmp;
 		tmp->next = tmp;
 		list = tmp;
-		return;
+		return list;
 	}
 
 	// append to front now!
@@ -62,7 +62,32 @@ void DoublyCircularLinkedList<T>::addToFront(const T v) {
 	list->prev->next = tmp;
 	list->prev = tmp;
 	list = tmp;
+
+	return tmp;
 }
+
+// move a node to the front of the list
+template <typename T>
+void DoublyCircularLinkedList<T>::moveToFront(Node<T> *n) {
+	// already at the front
+	if (n == list)
+		return;
+
+	Node<T> *oldHead = list;
+
+	Node<T> *next = n->next;
+	Node<T> *prev = n->prev;
+	prev->next = next;
+	next->prev = prev;	
+
+	n->next = oldHead;
+	n->prev = oldHead->prev;
+	n->prev->next = n;
+
+	// update the head
+	list = n;
+}
+
 
 // remove the tail node
 template <typename T>
@@ -143,6 +168,12 @@ void DoublyCircularLinkedList<T>::getListElements(std::list<T>& l) {
 		if (isEndOfList(tmp, list))
 			break;
 	}
+}
+
+template <typename T>
+T DoublyCircularLinkedList<T>::getVal(Node<T> *n) {
+	if (n)
+		return n->data; 
 }
 
 template <typename T>

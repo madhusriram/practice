@@ -15,4 +15,10 @@ WORKDIR /source
 ADD runTests.sh .
 RUN chmod +x runTests.sh
 
+LOCAL_GROUP_ID=$(id -g)
+LOCAL_USER_ID=$(id -u)
+
+RUN groupadd -g $LOCAL_GROUP_ID -o user
+RUN useradd -s /bin/bash -u $LOCAL_USER_ID -g $LOCAL_GROUP_ID -N -o -m user
+
 CMD ["./runTests.sh"]
