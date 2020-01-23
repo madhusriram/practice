@@ -4,6 +4,7 @@ MAINTAINER "Madhu Sriramu(madhusirmv@gmail.com)"
 
 RUN apt-get update && apt-get install -y \
 	g++ \
+	gdb \
 	libgtest-dev \
 	cmake
 
