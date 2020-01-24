@@ -3,4 +3,3 @@
 
 ## Pending
 - Priority queues
-- LRU Cache
