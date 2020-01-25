@@ -2,7 +2,7 @@
 | File | Level | Description |
 | --- | --- | --- |
 | maxconsecutiveones.cc | Easy | Given a binary array, find the max number of consecutive 1s in the array
-
+| removeElement.cc | Easy | Remove elements in an array in-place
 
 ## Medium
 | File | Level | Description |
