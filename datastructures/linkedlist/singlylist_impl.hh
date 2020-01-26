@@ -242,22 +242,25 @@ int SinglyList<T>::sumOfLastK(int k) {
 
 	// start with this, if last K nodes not found return -1
 	sum = list->data;
-
+	// 1 2 3 4 5
 	while (second != nullptr) {
 		if (window < k && second->next == nullptr) {
 			sum = -1;
 			break;
 		}
 		if (window > k) {
-			sum -= left->data;
-			left = left->next;
+			sum -= first->data;
+			first = first->next;
 			window--;
-			
 		}
-		second = second->next;
-		window++;
-		// accrue sum
-		sum += second->data;
+
+		if (second->next) {
+			second = second->next;
+			window++;
+			sum += second->data;
+		} else {
+			second = second->next;
+		}
 	}
 	return sum;
 }

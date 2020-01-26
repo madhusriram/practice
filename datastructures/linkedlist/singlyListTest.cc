@@ -146,7 +146,7 @@ TEST(SinglyList, SumOfLastK) {
 
 	int res = l1.sumOfLastK(5);
 	ASSERT_EQ(res == 15, 1);
-
+	
 	res = l1.sumOfLastK(3);
 	ASSERT_EQ(res == 12, 1);
 
