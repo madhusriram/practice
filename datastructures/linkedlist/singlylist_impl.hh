@@ -227,6 +227,41 @@ void SinglyList<T>::reverse() {
 	list = prev;
 }
 
+// find the sum of last consecutive K nodes
+// use sliding window technique
+template <typename T>
+int SinglyList<T>::sumOfLastK(int k) {
+	if (list == nullptr) 
+		return -1;
+	
+	int sum = 0;
+	int window = 1;
+
+	Node<T> *first = list;
+	Node<T> *second = list;
+
+	// start with this, if last K nodes not found return -1
+	sum = list->data;
+
+	while (second != nullptr) {
+		if (window < k && second->next == nullptr) {
+			sum = -1;
+			break;
+		}
+		if (window > k) {
+			sum -= left->data;
+			left = left->next;
+			window--;
+			
+		}
+		second = second->next;
+		window++;
+		// accrue sum
+		sum += second->data;
+	}
+	return sum;
+}
+
 // slowPtr moves 1 step closer than the regular "tmp" pointer
 // Can be solved through tortoise and hare logic!
 // 1 2 3

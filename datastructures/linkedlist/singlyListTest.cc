@@ -137,6 +137,23 @@ TEST(SinglyList, SumList) {
 	ASSERT_EQ(expected == listEl, 1);
 }
 
+// Sum of Last K consecutive nodes in a singly linked list
+TEST(SinglyList, SumOfLastK) {
+	SinglyList<int> l1;
+
+	std::list<int> l1input{1,2,3,4,5};
+	l1.push_back(l1input);
+
+	int res = l1.sumOfLastK(5);
+	ASSERT_EQ(res == 15, 1);
+
+	res = l1.sumOfLastK(3);
+	ASSERT_EQ(res == 12, 1);
+
+	res = l1.sumOfLastK(6);
+	ASSERT_EQ(res == -1, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);

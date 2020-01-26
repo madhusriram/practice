@@ -86,7 +86,11 @@ class SinglyList : public Node<T> {
 
 		// copies linked list elements into the list passed in by the user
 		void getListElements(std::list<T> &);
-	
+
+		// sum of last K consecutive nodes in the list
+		// https://www.geeksforgeeks.org/maximum-sum-of-k-consecutive-nodes-in-the-given-linked-list/
+		int sumOfLastK(int );
+
 	private:
 		void deleteNode(Node<T> *tmp);
 
