@@ -4,6 +4,8 @@
 | maxconsecutiveones.cc | Easy | Given a binary array, find the max number of consecutive 1s in the array
 | removeElement.cc | Easy | Remove elements in an array in-place
 | removeElement.c | Easy | Remove elements in an array in-place without C++ standard library
+| romanToInt.cc | Easy | Roman to Integer
+
 ## Medium
 | File | Level | Description |
 | --- | --- | --- |
