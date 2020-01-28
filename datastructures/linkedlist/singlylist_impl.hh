@@ -265,6 +265,47 @@ int SinglyList<T>::sumOfLastK(int k) {
 	return sum;
 }
 
+// Max sum of K consecutive nodes in the list
+template <typename T>
+int SinglyList<T>::maxSumOfK(int k) {
+	if (list == nullptr)
+		return;
+
+	Node<T> *first = list;
+	Node<T> *second = list;
+	int window = 0;
+	int maxSum = 0;
+	int prevMax = 0;
+	int listLen = 0;
+
+	// 1 2 3 4 5
+	while (second != nullptr) {
+		if (window > k) {
+			maxSum -= first->data;
+			first = first->next;
+			window--;
+		}
+			
+		window++;
+		sumMax += second->data;
+
+		if (window == k)
+			prevMax = (prevMax > maxSum) ? prevMax : maxSum;
+
+		second = second->next;
+
+		listLen++;
+	}
+
+	// k consecutive nodes was never found
+	if (listLen < k) {
+		return -1;
+	}
+
+
+	return prevMax;
+}
+
 // slowPtr moves 1 step closer than the regular "tmp" pointer
 // Can be solved through tortoise and hare logic!
 // 1 2 3

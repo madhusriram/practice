@@ -91,6 +91,10 @@ class SinglyList : public Node<T> {
 		// https://www.geeksforgeeks.org/maximum-sum-of-k-consecutive-nodes-in-the-given-linked-list/
 		int sumOfLastK(int );
 
+		// Max sum of K consecutive nodes in the list
+		// https://www.geeksforgeeks.org/maximum-sum-of-k-consecutive-nodes-in-the-given-linked-list/
+		int maxSumOfK(int );
+
 	private:
 		void deleteNode(Node<T> *tmp);
 

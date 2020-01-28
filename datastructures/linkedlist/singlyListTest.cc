@@ -154,6 +154,23 @@ TEST(SinglyList, SumOfLastK) {
 	ASSERT_EQ(res == -1, 1);
 }
 
+// Max sum of K consecutive nodes in a singly linked list
+TEST(SinglyList, MaxSumOfK) {
+	SinglyList<int> l;
+
+	std::list<int> linput{1,2,3,4,5,4,3,2,1};
+	l1.push_back(linput);
+
+	int res = l1.maxSumOfK(5);
+	ASSERT_EQ(res == 19, 1);
+
+	res = l1.maxSumOfK(3);
+	ASSERT_EQ(res == 13, 1);
+
+	res = l1.maxSumOf(10);
+	ASSERT_EQ(res == -1, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);
