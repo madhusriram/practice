@@ -269,16 +269,16 @@ int SinglyList<T>::sumOfLastK(int k) {
 template <typename T>
 int SinglyList<T>::maxSumOfK(int k) {
 	if (list == nullptr)
-		return;
+		return -1;
 
 	Node<T> *first = list;
 	Node<T> *second = list;
-	int window = 0;
+	int window = 1;
 	int maxSum = 0;
 	int prevMax = 0;
 	int listLen = 0;
 
-	// 1 2 3 4 5
+	// 1 2 3 4 5 4 3 2 1
 	while (second != nullptr) {
 		if (window > k) {
 			maxSum -= first->data;
@@ -286,14 +286,13 @@ int SinglyList<T>::maxSumOfK(int k) {
 			window--;
 		}
 			
-		window++;
-		sumMax += second->data;
+		maxSum += second->data;
 
 		if (window == k)
 			prevMax = (prevMax > maxSum) ? prevMax : maxSum;
-
+		
 		second = second->next;
-
+		window++;
 		listLen++;
 	}
 
@@ -301,7 +300,6 @@ int SinglyList<T>::maxSumOfK(int k) {
 	if (listLen < k) {
 		return -1;
 	}
-
 
 	return prevMax;
 }
