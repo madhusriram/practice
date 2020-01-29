@@ -66,6 +66,9 @@ class SinglyList : public Node<T> {
 		// delete nth node from the end of the list
 		void removeNthFromEnd(int n);
 
+		// swap every 2 adjacent nodes 
+		void swapNodes();
+
 		// return data at the center of the list
 		T middleOfList();
 

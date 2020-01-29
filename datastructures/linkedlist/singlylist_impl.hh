@@ -165,8 +165,46 @@ T SinglyList<T>::middleOfList() {
 	return slowptr->data;
 }
 
-// 1 2 3 4 5
-//
+// 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+// swap every 2 adjacent nodes
+// https://leetcode.com/problems/swap-nodes-in-pairs/
+template <typename T>
+void SinglyList<T>::swapNodes() {
+	Node<T> *tmp = list;
+	Node<T> *start = nullptr;
+	Node<T> *prev = nullptr;
+
+	if (tmp == nullptr)
+		return;
+
+	while (tmp) {
+		Node<T> *savenext = tmp->next;
+		if (savenext != nullptr) {
+			tmp->next = savenext->next;
+			savenext->next = tmp;
+			tmp = savenext;
+		} else {
+			break;
+		}
+
+		if (prev != nullptr) {
+			prev->next = tmp;
+		}
+
+		// adjust the head
+		if (start == nullptr) {
+			list = tmp;
+			start = list; // so that we do not hit this condition again
+		}	
+	
+		prev = tmp->next;
+		tmp = prev->next;
+
+		if (tmp == nullptr) 
+			break;
+	}
+}
+
 // do not use the last pointer
 // should be harmless if there is no "n"th node from the end
 template <typename T>

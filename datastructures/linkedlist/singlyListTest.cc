@@ -171,6 +171,33 @@ TEST(SinglyList, MaxSumOfK) {
 	ASSERT_EQ(res == -1, 1);
 }
 
+// Swap adjacent nodes
+TEST(SinglyList, SwapAdjacent) {
+	// odd numbered list
+	SinglyList<int> l;
+	std::list<int> linput{1,2,3,4,5};
+	l.push_back(linput);
+	l.swapNodes();
+
+	std::list<int> expected{2,1,4,3,5};
+	std::list<int> listEl;
+	l.getListElements(listEl);
+
+	ASSERT_EQ(listEl == expected, 1);
+
+	// even numbered list
+	SinglyList<int> l2;
+	std::list<int> l2input{1,2,3,4,5,6};
+	l2.push_back(l2input);
+	l2.swapNodes();
+
+	std::list<int> expected2{2,1,4,3,6,5};
+	std::list<int> listEl2;
+	l2.getListElements(listEl2);
+
+	ASSERT_EQ(listEl2 == expected2, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);
