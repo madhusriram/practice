@@ -5,7 +5,7 @@
 | removeElement.cc | Easy | Remove elements in an array in-place
 | removeElement.c | Easy | Remove elements in an array in-place without C++ standard library
 | romanToInt.cc | Easy | Roman to Integer
-
+| insertPos.cc | Easy | Find an element in the sorted array, if not found, find the position a element can be inserted
 ## Medium
 | File | Level | Description |
 | --- | --- | --- |
