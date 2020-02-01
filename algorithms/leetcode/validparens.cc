@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <string>
+#include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 
 /*
 https://leetcode.com/problems/valid-parentheses/ 
@@ -17,10 +18,6 @@ int main() {
 	while (sstr >> c)
 		v.push_back(c);
 
-
-	for ( auto i : v ) {
-		std::cout << i << " ";
-	}
 
 	return 0;
 }
