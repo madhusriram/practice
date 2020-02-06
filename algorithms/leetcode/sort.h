@@ -3,9 +3,8 @@
 #ifndef _SORT_H_
 #define _SORT_H_
 
-void buildMaxHeap(int *arr, int array_len);
-
 // heapsort
-void heapsort(int *arr, int array_len);
+// 'a' for ascending order and 'd' for descending order
+void heapsort(int *arr, int array_len, char sorting_order);
 
 #endif // _SORT_H_

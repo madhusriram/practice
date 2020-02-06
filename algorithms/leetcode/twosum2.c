@@ -54,7 +54,7 @@ int main() {
 
 	// sort array
 	buildMaxHeap(array, array_len);
-	heapsort(array, array_len);
+	heapsort(array, array_len, 'a');
 	printf("Sorted array: ");
 	printarray(array, array_len);
 	
