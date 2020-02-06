@@ -6,7 +6,6 @@
 | removeElement.c | Easy | Remove elements in an array in-place without C++ standard library
 | romanToInt.cc | Easy | Roman to Integer
 | insertPos.cc | Easy | Find an element in the sorted array, if not found, find the position a element can be inserted
-| validparens.c | Easy | Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid
 | validparens.cc | Easy | Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid
 | palindromenumber.c | Easy | Find out if a number is a palindrome
 | reverseInt.c | Easy | Reverse a integer
