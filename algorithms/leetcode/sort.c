@@ -41,17 +41,17 @@ void heapsort(int *arr, int len, char sorting_order) {
 			buildMinHeap(arr, len, i);
 	}
 
-    for (int i = 0, j = len - 1; i != j; j--) {                                 
-        // swap out max with the last element                                   
-        int tmp = arr[j];                                                       
-        arr[j] = arr[0];                                                        
-        arr[0] = tmp;                                                           
-                                                  
-		if (sorting_order == 'a') {		
-			// re-heapify now!                                                    
+	for (int i = 0, j = len - 1; i != j; j--) {                                 
+		// swap out max with the last element                                   
+		int tmp = arr[j];                                                       
+		arr[j] = arr[0];                                                        
+		arr[0] = tmp;
+		
+		if (sorting_order == 'a') {
+			// re-heapify now!
 			buildMaxHeap(arr, j, 0);
 		} else {
 			buildMinHeap(arr, j, 0);
 		}
-    }                                                                           
-}  
+	}
+}
