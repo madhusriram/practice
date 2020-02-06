@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-// 4 10 5 3 1                                                                   
-// root is the highest value and all parents are larger than their children     
+// max heap has the property that each parent node is larger than its children
 void buildMaxHeap(int *arr, int arr_len, int root) { 
     int largestindex = root;                                                        
     int leftindex = 2 * root + 1;                                              
@@ -27,10 +26,29 @@ void buildMaxHeap(int *arr, int arr_len, int root) {
     }                                                                          
 }                                                                               
 
+// min heap has the property that each parent node is smaller than its children
 void buildMinHeap(int *arr, int arr_len, int root) {
-		
+	int smallestindex = root;
+	int leftindex = 2 * root + 1;
+	int rightindex = 2 * root + 2;
 
+	// if left child exists and is smaller
+	if (leftindex < arr_len && arr[leftindex] < arr[root])
+		smallestindex = leftindex;
 
+	// if right child exists and is smaller
+	if (rightindex < arr_len && arr[rightindex] < arr[smallestindex])
+		smallestindex = rightindex;
+
+	// if parent is no longer than the smallest
+	if (smallestindex != root) {
+		int tmp = arr[smallestindex];
+		arr[smallestindex] = arr[root];
+		arr[root] = tmp;
+
+		// re-build min-heap starting from the new value at smallestindex
+		buildMinHeap(arr, arr_len, smallestindex);
+	}
 }
 
 void heapsort(int *arr, int len, char sorting_order) {
