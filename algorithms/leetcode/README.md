@@ -8,6 +8,7 @@
 | insertPos.cc | Easy | Find an element in the sorted array, if not found, find the position a element can be inserted
 | validparens.cc | Easy | Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid
 | palindromenumber.c | Easy | Find out if a number is a palindrome
+| validpalindrome.c | Easy | Find out if a sentence is a palindrome considering only alphanumeric characters
 | reverseInt.c | Easy | Reverse a integer
 
 ## Medium
@@ -19,4 +20,4 @@
 | twosum.cc | Medium | Find a pair of indices which will add up to a sum : using hashmap, O(n) time & space
 | twosum2.c | Medium | Find a pair of indices which will add up to a sum : using sorting and 2 pointers O(nlogn) and O(1) space
 | heapsort.c | Medium | Sort in ascending order
-| klargest.c | Medium | Kth largest element in an unsorted array (PENDING)
+| klarges.c | Medium | Kth largest element in an unsorted array (PENDING)
