@@ -10,6 +10,7 @@
 | palindromenumber.c | Easy | Find out if a number is a palindrome
 | validpalindrome.c | Easy | Find out if a sentence is a palindrome considering only alphanumeric characters
 | reverseInt.c | Easy | Reverse a integer
+| squareAndSort.c | Easy | For a ascending order array square and return the sorted array
 
 ## Medium
 | File | Level | Description |
