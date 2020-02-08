@@ -25,14 +25,23 @@ struct node *createNode(int n) {
 	return new;
 }
 
+void printList(struct node *l) {
+	while (l != NULL) {
+		printf("%d ", l->data);
+		l = l->next;
+	}
+	printf("\n");
+}
+
+// should be called once per level
 void buildList(struct node *n, int **list) {
 	int *l = *list;
-
+	
 	while (*l && *l != INT_MAX && *l != -1) {
 		struct node *new = createNode(*l);
 		n->next = new;
 		new->prev = n;
-		n = new->next;
+		n = n->next;
 		
 		// advance the input
 		l = l + 1;
@@ -56,7 +65,9 @@ void buildDoublyLinkedList(int *list, int len) {
 		// advance the input
 		list++;
 	}
-	
+
+	struct node *tmp = dList;
+
 	while (*list != INT_MAX) {
 		buildList(start, &list);
 		
@@ -64,18 +75,21 @@ void buildDoublyLinkedList(int *list, int len) {
 			distanceFromHead++;
 			list++;
 		}
-		
+		printf("Distance from head: %d\n", distanceFromHead);
+
 		// if there is evidence of child list move the start to the list point
 		// where the child is expected to be
-		start = dList;
-
-		for ( ; distanceFromHead > 1; distanceFromHead--) {
+		for (start = tmp; distanceFromHead > 1; distanceFromHead--) {
+			printf("%d ", start->data);
 			start = start->next;	
 		}
+		printf("\n");
 
 		// create child tree to prepare writing the next level
 		start->child = createNode(*list);
 		start = start->child;
+		tmp = start;
+		distanceFromHead = 0;
 
 		list++;
 	}
@@ -85,16 +99,29 @@ void flatten() {
 
 }
 
-void printList(struct node *l) {
-	while (l != NULL) {
-		printf("%d ", l->data);
-		l = l->next;
+// give dList print multi level list
+void printMultiLevelList() {
+	struct node *nextLevel;
+	struct node *tmp = dList;
+
+	while (tmp) {
+		if (tmp->child) {
+			nextLevel = tmp->child;
+			printf("CHILD: %d\n", nextLevel->data);
+		}
+		printf("%d ", tmp->data);
+		tmp = tmp->next;
+		if (! tmp) {
+			tmp = nextLevel;
+			nextLevel = NULL;
+		}
 	}
+	printf("\n");
 }
 
 // -1 in the input indicates the null for us!
 // [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
-// [1,2,3,4,5,6,-1,-1,-1,7,8,9,10,-1,-1,11,12]
+// [1 2 3 4 5 6 -1 -1 -1 7 8 9 10 -1 -1 11 12]
 int main() {
 	int list_len;
 	int i;
@@ -110,6 +137,8 @@ int main() {
 	list_elements[i] = INT_MAX;
 
 	buildDoublyLinkedList(list_elements, list_len);
+
+	//printMultiLevelList();
 
 	return 0;
 }
