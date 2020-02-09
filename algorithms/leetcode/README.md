@@ -22,4 +22,5 @@
 | twosum2.c | Medium | Find a pair of indices which will add up to a sum : using sorting and 2 pointers O(nlogn) and O(1) space
 | heapsort.c | Medium | Sort in ascending order
 | klargest.c | Medium | Kth largest element in an unsorted array (PENDING)
-| flattenlist.c | Medium | Flatten a doubly linked list
+| flattenlist.cc | Medium | Flatten a doubly linked list
+| removesubfolder.cc | Medium | Remove sub-folders from filesystem
