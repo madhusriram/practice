@@ -5,13 +5,11 @@
 
 // https://leetcode.com/problems/remove-element/
 
-/*
 int removeElement(std::vector<int>& v, int num) {
 	v.erase(std::remove(v.begin(), v.end(), num), v.end());
 
 	return v.size();
 }
-*/
 
 int main() {
 	std::vector<int> v;
