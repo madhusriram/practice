@@ -15,7 +15,59 @@
 
 using namespace std;
 
-bool checkBackspacedStrings(char *str1, int len1, char *str2, int len2) {
+// method 2 uses 2 pointer method
+bool checkBackspacedStrings2(const char *str1, int len1, const char *str2, int len2) {
+    int i = len1 - 1;
+    int j = len2 - 1;
+    char c1, c2;
+    int skip1 = 0;
+    int skip2 = 0;
+
+    while (i >= 0 || j >= 0) {
+        // reset char's
+        c1 = ' ';
+        c2 = ' ';
+
+        // scan backward str1 until a char is hit
+        for ( ; i >= 0; i--) {
+            if (str1[i] == '#') {
+                skip1++;
+                continue;
+            }
+            if (skip1 > 0) {
+                skip1--;
+                continue;
+            }
+            c1 = str1[i];
+             i--;
+             break;
+        }
+        cout << "Character 1: " << i << " " << c1 << " " << endl;
+
+        // scan backward str2 until a char is hit
+        for ( ; j >= 0; j--) {
+            if (str2[j] == '#') {
+                skip2++;
+                continue;
+            }
+            if (skip2 > 0) {
+                skip2--;
+                continue;
+            }
+            c2 = str2[j];
+            j--;
+            break;
+        }
+
+        // compare char's got out of the string
+        if (c1 != c2)
+            return false;
+     }
+
+     return true;
+}
+
+bool checkBackspacedStrings(const char *str1, int len1, const char *str2, int len2) {
     // both zero length, no-brainer
     if (len1 == 0 && len2 == 0)
         return true;
@@ -56,30 +108,29 @@ bool checkBackspacedStrings(char *str1, int len1, char *str2, int len2) {
 // method -1 involves using additional queue which would be O(N) time and O(N) space
 // method -2 involves using two pointer method (PENDING)
 int main() {
-    char str1[STRING_LEN];
-    char str2[STRING_LEN];
-
+	string str1, str2;
+	const char *s1;
+	const char *s2;
+	
     printf("Enter string 1: ");
-    fgets(str1, STRING_LEN, stdin);
+	getline(cin, str1);
+    s1 = str1.c_str();
+	int str1len = strlen(s1);
+
     printf("Enter string 2: ");
-    fgets(str2, STRING_LEN, stdin);
+	getline(cin, str2);
+	s2 = str2.c_str();
+	int str2len = strlen(s2);
 
-    // remove new-line character at the end
-    // fgets adds a '\n' at the end
-    int str1len = strlen(str1);
-    int str2len = strlen(str2);
-    str1[str1len -1] = '\0';
-    str2[str2len - 1] = '\0';
-
-    printf("String 1: %s, string 2: %s\n", str1, str2);
+    printf("String 1: %s, string 2: %s\n", s1, s2); 
 
     // method1
-    bool res = checkBackspacedStrings(str1, str1len, str2, str2len);
+    //bool res = checkBackspacedStrings(s1, str1len, s2, str2len);
 
     // method2
-    
-    printf("String1: %s and string2: %s are ", str1, str2);
-    
+    bool res = checkBackspacedStrings2(s1, str1len, s2, str2len);
+
+   	printf("String1: %s and string2: %s are ", s1, s2);
     if (res)
         printf("equal\n");
     else
