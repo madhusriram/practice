@@ -28,3 +28,4 @@
 | klargest.c | Medium | Kth largest element in an unsorted array (PENDING)
 | flattenlist.cc | Medium | Flatten a doubly linked list
 | removesubfolder.cc | Medium | Remove sub-folders from filesystem
+| thresum.cc | fin a unique triplet that sums to 0 (PENDING)
