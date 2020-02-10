@@ -13,6 +13,7 @@
 | squareAndSort.c | Easy | For a ascending order array square and return the sorted array
 | anagrams.cc | Easy | Given two strings find if they are anagrams of each other
 | removeDups.cc | Easy | Remove duplicates from sorted array
+| getInsert.c | Easy | Get insert position of a value
 
 ## Medium
 | File | Level | Description |
