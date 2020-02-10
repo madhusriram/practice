@@ -15,7 +15,7 @@
 | removeDups.cc | Easy | Remove duplicates from sorted array
 | getInsert.c | Easy | Get insert position of a value
 | backspace.cc | Easy | Backspace string compare
-
+| longpressedname.cc | Easy | Find if one name is a long pressed name of the other
 ## Medium
 | File | Level | Description |
 | --- | --- | --- |
