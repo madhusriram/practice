@@ -40,5 +40,8 @@ int main() {
 
 	printf("Index at which %d can be inserted is %d\n", target, index);
 
+	// not required although it's a good habit!
+	free(arr);
+
 	return 0;
 }
