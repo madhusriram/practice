@@ -11,7 +11,7 @@
 | validpalindrome.c | Easy | Find out if a sentence is a palindrome considering only alphanumeric characters
 | reverseInt.c | Easy | Reverse a integer
 | squareAndSort.c | Easy | For a ascending order array square and return the sorted array
-
+| anagrams.cc | Easy | Given two strings find if they are anagrams of each other
 ## Medium
 | File | Level | Description |
 | --- | --- | --- |
