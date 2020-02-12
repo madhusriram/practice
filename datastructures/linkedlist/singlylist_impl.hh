@@ -1,3 +1,4 @@
+#include <stack>		// wouldn't need this but only for some help
 
 // adds to the beginning of the list
 template <typename T>
@@ -126,9 +127,22 @@ void SinglyList<T>::sumLists(SinglyList<T>& l, SinglyList<T> &sumList) {
 		sumList.push_back(carry);
 }
 
+// naive method is to have 2 pointers, fast and slow.
+// for each traversal of the slow, add it to the stack.
+// after hitting the half point move the slow and pop each from the stack and compare!
+// this would O(N) and O(N/2) space
 template <typename T>
 bool SinglyList<T>::isPalindrome() {
+	if (! list)
+		return false;
 
+	Node<T> *fast = list->next;
+	Node<T> *slow = list;
+	stack<int> s;
+
+	// get middle of the list
+	// 1 2 3 4 5 6
+	// 1 2 3 4 5
 }
 
 template <typename T>

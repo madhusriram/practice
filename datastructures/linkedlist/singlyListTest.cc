@@ -198,6 +198,33 @@ TEST(SinglyList, SwapAdjacent) {
 	ASSERT_EQ(listEl2 == expected2, 1);
 }
 
+// Is the list a palindrome?
+TEST(SingyList, IsPalindrome) {
+	SinglyList<int> l;
+	std::list<int> input{1,2,3,4,5};
+	l.push_back(input);
+	
+	ASSERT_EQ(l.isPalindrome() == false, 1);
+
+	SinglyList<int> l2;
+	std::list<int> input2{1,2,3,2,1};
+	l2.push_back(input2);
+
+	ASSERT_EQ(true == l2.isPalindrome(), 1);
+
+	SinglyList<int> l3;
+	std::list<int> input3{1,2,3,4,4,3,2,1};
+	l3.push_back(input3);
+
+	ASSERT_EQ(true == l3.isPalindrome(), 1);
+
+	SinglyList<int> l4;
+	std::list<int> input4{1};
+	l4.push_back(input4);
+
+	ASSERT_EQ(true == l4.isPalindrome(), 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);
