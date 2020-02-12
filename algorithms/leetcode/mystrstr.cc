@@ -22,7 +22,6 @@ int mystrstr(const char *needle, const char *haystack) {
 	for (i = 0; i < (haystackLen - needleLen + 1); i++) {
 		pos = i;
 		for (j = 0; j < needleLen; j++) {
-			printf("i: %d(%c), j: %d(%c)\n", j, needle[j], i+j, haystack[i+j]);
 			if (needle[j] != haystack[i + j])
 				break;
 			// exit as soon as we find!
