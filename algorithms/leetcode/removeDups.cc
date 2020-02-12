@@ -11,7 +11,7 @@ using namespace std;
 // [0,0,1,1,1,2,2,3,3,4]
 // [0,1,2,3,4] = 5
 // solve it using the two pointer method
-// return the length of the duplicate-less array
+// return the length of the duplicate-less array and modify the array in-place
 int removeDups(int *arr, int arr_len) {
 	int new_len = 0;
 	int j = 0;
