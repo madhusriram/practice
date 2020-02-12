@@ -17,7 +17,7 @@
 | backspace.cc | Easy | Backspace string compare
 | longpressedname.cc | Easy | Find if one name is a long pressed name of the other
 | mystrstr.cc | Easy | Implement strstr()
-
+| kdiff.cc | Easy | Given an integer k, find the number of unique k-diff pairs in an array (PENDING)
 
 ## Medium
 | File | Level | Description |
@@ -31,4 +31,4 @@
 | klargest.c | Medium | Kth largest element in an unsorted array (PENDING)
 | flattenlist.cc | Medium | Flatten a doubly linked list
 | removesubfolder.cc | Medium | Remove sub-folders from filesystem
-| thresum.cc | fin a unique triplet that sums to 0 (PENDING)
+| threesum.cc | fin a unique triplet that sums to 0 (PENDING)
