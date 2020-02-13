@@ -20,6 +20,8 @@
 | kdiff.cc | Easy | Given an integer k, find the number of unique k-diff pairs in an array 
 | mystrstr.cc | Easy | Implement strstr() (PENDING KMP implementation)
 | movezeroes.cc | Easy | Move all zeroes to end of the array (using erase-remove idiom) PENDING without erase-remove idiom
+| reversevowels.cc | Easy | Reverse all vowels of a string
+
 ## Medium
 | File | Level | Description |
 | --- | --- | --- |
