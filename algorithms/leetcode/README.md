@@ -17,7 +17,8 @@
 | backspace.cc | Easy | Backspace string compare
 | longpressedname.cc | Easy | Find if one name is a long pressed name of the other
 | mystrstr.cc | Easy | Implement strstr()
-| kdiff.cc | Easy | Given an integer k, find the number of unique k-diff pairs in an array (PENDING)
+| kdiff.cc | Easy | Given an integer k, find the number of unique k-diff pairs in an array 
+| mystrstr.cc | Easy | Implement strstr() (PENDING KMP implementation)
 
 ## Medium
 | File | Level | Description |
