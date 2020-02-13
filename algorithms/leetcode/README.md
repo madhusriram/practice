@@ -38,3 +38,9 @@
 | dividetwoint.c | Medium | Divide two integers without division, multiplication or mod (PENDING)
 | findfistlast.c | Medium | Find first and last position of element in sorted array
 | finddup.c | Medium | Perform Heap sort and then compare adjacent elements
+
+## Hard
+| File | Level | Description |
+| --- | --- | --- |
+| median.c | Hard | Find the median of 2 sorted arrays (PENDING)
+
