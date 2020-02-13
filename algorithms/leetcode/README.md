@@ -32,4 +32,5 @@
 | klargest.c | Medium | Kth largest element in an unsorted array (PENDING)
 | flattenlist.cc | Medium | Flatten a doubly linked list
 | removesubfolder.cc | Medium | Remove sub-folders from filesystem
-| threesum.cc | fin a unique triplet that sums to 0 (PENDING)
+| threesum.cc | | Medium | find a unique triplet that sums to 0 (PENDING)
+| dividetwoint.c | Medium | Divide two integers without division, multiplication or mod (PENDING)
