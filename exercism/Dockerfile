@@ -7,14 +7,14 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	vim
 
-WORKDIR /source
+WORKDIR /source/hostvolume
 
 # Build exercism from sources
 RUN wget https://github.com/exercism/cli/releases/download/v3.0.5/exercism-linux-64bit.tgz && \
     tar xzf exercism-linux-64bit.tgz && \
     mv exercism /usr/local/bin/
 
-ADD configure_exercism.sh /source/
-RUN chmod +x configure_exercism.sh
+ADD exercism.sh /source/hostvolume
+RUN chmod +x exercism.sh
 
-CMD ["./configure_exercism.sh"]
+CMD ["./exercism.sh"]

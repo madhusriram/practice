@@ -6,7 +6,9 @@ function build() {
 	docker build . -t ${IMG_NAME}
 }
 
-if [[ "$(docker images -q \"$IMG_NAME\" 2> /dev/null)" == "" ]]; then
+exec=$(docker images -q "$IMG_NAME" 2> /dev/null)
+
+if [[ -z "$exec" ]]; then
 	build
 fi
 
@@ -46,5 +48,5 @@ fi
 docker run --rm -v ${PWD}:/source/hostvolume \
 		-e "TRACK=$TRACK" \
 		-e "FILE=$FILE" \
-		-e "SUBMIT=$SUBMITFILES" \
-		-it ${IMG_NAME} 
+		-e "SUBMITFILES=$SUBMITFILES" \
+		-it ${IMG_NAME}
