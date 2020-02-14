@@ -23,17 +23,19 @@ helpFunction() {
 	echo -e "\t-t \"Track to download from, example: go\""
 	echo -e "\t-f \"File to download from the track\""
 	echo -e "\t-s \"File to submit to exercism\""
+	echo -e "\t-a \"Attach shell to container\""
 	exit 1
 }
 
 # Read in arguments
-while getopts "t:f:s:b" opt
+while getopts "t:f:s:ba" opt
 do
    case "$opt" in
       t ) TRACK="$OPTARG" ;;
       f ) FILE="$OPTARG" ;;
 	  s ) SUBMITFILES="$OPTARG" ;;
 	  b ) build ;;
+	  a ) SHELL=/bin/bash
       ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
    esac
 done
@@ -49,4 +51,4 @@ docker run --rm -v ${PWD}:/source/hostvolume \
 		-e "TRACK=$TRACK" \
 		-e "FILE=$FILE" \
 		-e "SUBMITFILES=$SUBMITFILES" \
-		-it ${IMG_NAME}
+		-it ${IMG_NAME} "$SHELL"

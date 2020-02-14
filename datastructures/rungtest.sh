@@ -22,7 +22,8 @@ for i in "$@"; do
 	esac
 done
 
-if [[ "$(docker images -q testimg 2> /dev/null)" == "" ]]; then
+exec=$(docker images -q $IMG_NAME 2> /dev/null)
+if [[ -z "$exec" ]]; then
 	build
 fi
 
