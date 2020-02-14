@@ -38,6 +38,7 @@
 | dividetwoint.c | Medium | Divide two integers without division, multiplication or mod (PENDING)
 | findfistlast.c | Medium | Find first and last position of element in sorted array
 | finddup.c | Medium | Perform Heap sort and then compare adjacent elements
+| atoi.cc | Medium | Convert string to integer
 
 ## Hard
 | File | Level | Description |
