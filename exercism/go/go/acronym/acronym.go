@@ -1,17 +1,26 @@
 package acronym
 
-func Abbreviate(s string) string {
-	var m = map[string]string{
-			"Portable Network Graphics": "PNG",
-			"Ruby on Rails": "ROR",
-			"First In, First Out": "FIFO",
-			"GNU Image Manipulation Program": "GIMP",
-			"Complementary metal-oxide semiconductor": "CMOS",
-			"Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me": "ROTFLSHTMDCOALM",
-			"Something - I made up from thin air": "SIMUFTA",
-			"Halley's Comet": "HC",
-			"The Road _Not_ Taken": "TRNT",
-	}
+import (
+	"strings"
+	"fmt"
+)
 
-	return m[s]
+func Abbreviate(s string) string {
+	var res string
+	for _, w := range strings.Split(s, " ") {
+		w = strings.ToUpper(w)
+		
+		found := false
+
+		for _, c := range w {
+			if ! found && c >= 65  && c <= 90 {
+				res += fmt.Sprintf("%c", c)
+				found = true
+			}
+			if c == '-' {
+				found = false
+			}
+		}
+	}
+	return res
 }
