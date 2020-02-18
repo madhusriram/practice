@@ -1,5 +1,7 @@
 # Starting script
 
+set +x
+
 IMG_NAME=exercism
 
 function build() {
@@ -50,9 +52,15 @@ then
 	helpFunction
 fi
 
+local_user=$(id -u ${USER})
+local_group=$(id -g ${USER})
+
+		#-u ${local_user}:${local_group} \
 # Run and download the specified exercism file
 docker run --rm -v ${PWD}:/source/hostvolume \
 		-e "TRACK=$TRACK" \
 		-e "FILE=$FILE" \
 		-e "SUBMITFILES=$SUBMITFILES" \
+		-e "local_group=$local_group" \
+		-e "local_user=$local_user" \
 		-it ${IMG_NAME} 
