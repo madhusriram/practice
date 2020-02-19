@@ -21,6 +21,7 @@
 | mystrstr.cc | Easy | Implement strstr() (PENDING KMP implementation)
 | movezeroes.cc | Easy | Move all zeroes to end of the array 
 | reversevowels.cc | Easy | Reverse all vowels of a string
+| runlength.c | Easy | Run length encoding and decoding
 
 ## Medium
 | File | Level | Description |
