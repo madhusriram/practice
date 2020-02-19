@@ -1,7 +1,7 @@
-// Two-fer creates a sentence
+// Package twofer creates a sentence based on name
 package twofer
 
-// Creates a sentence
+// ShareWith creates a sentence and returns a string
 func ShareWith(name string) string {
 	if name == "" {
 		name = "you"
