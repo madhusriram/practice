@@ -3,7 +3,11 @@
 
 # Fail immediately
 set -e
-set -x
+
+if [ "$DEBUG" = true ]; then
+	set -x
+fi
+
 ver=$(exercism version)
 
 if [ -z "$ver" ]; then

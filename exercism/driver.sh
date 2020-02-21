@@ -1,7 +1,5 @@
 # Starting script
 
-set +x
-
 IMG_NAME=exercism
 
 function build() {
@@ -21,20 +19,22 @@ fi
 
 helpFunction() {
 	echo " "
-	echo "Usage: $0 -t \"Track\" -f \"File\" -s \"Submit-files\""
+	echo "Usage: $0 -[abdh] -t \"Track\" -f \"File\" -s \"Submit-files\""
 	echo -e "\t-t \"Track to download from, example: go\""
 	echo -e "\t-f \"File to download from the track\""
 	echo -e "\t-s \"File to submit to exercism\""
 	echo -e "\t-a \"Attach shell to container\""
+	echo -e "\t-d \"Print executed shell commands\""
 	echo -e "\t-b \"Build image\""
 	echo -e "\t-h \"Display help message\""
 	exit 1
 }
 
 SHELL=""
+DEBUG=false
 
 # Read in arguments
-while getopts "t:f:s:bah" opt
+while getopts "t:f:s:bahd" opt
 do
    case "$opt" in
       t ) TRACK="$OPTARG" ;;
@@ -42,6 +42,7 @@ do
 	  s ) SUBMITFILES="$OPTARG" ;;
 	  b ) build ;;
 	  a ) SHELL=/bin/bash ;;
+	  d ) DEBUG=true ;;
 	  h ) helpFunction ;;
       ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
    esac
@@ -65,4 +66,5 @@ docker run --rm -v ${PWD}:/source/hostvolume \
 		-e "SUBMITFILES=$SUBMITFILES" \
 		-e "local_group=$local_group" \
 		-e "local_user=$local_user" \
+		-e "DEBUG=$DEBUG" \
 		-it ${IMG_NAME} 
