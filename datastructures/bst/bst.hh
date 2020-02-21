@@ -41,7 +41,7 @@ public:
 	// TODO without recursion in order tree traversal
 	void printInOrderWithoutRecursion(std::list<T> &);
 
-	// TODO build binary tree with an array as input
+	// build binary tree with an array as input
 	void buildTree(const T *arr);
 
 	// No recursion but replicate call-stack with a stack
