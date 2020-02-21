@@ -26,6 +26,7 @@ helpFunction() {
 	echo -e "\t-f \"File to download from the track\""
 	echo -e "\t-s \"File to submit to exercism\""
 	echo -e "\t-a \"Attach shell to container\""
+	echo -e "\t-b \"Build image\""
 	echo -e "\t-h \"Display help message\""
 	exit 1
 }
@@ -49,6 +50,7 @@ done
 # Both flags need to be present
 if [ -z "$TRACK" ] && [ -z "$FILE" ] && [ -z "$SUBMITFILES" ] 
 then
+	echo $SUBMITFILES
 	helpFunction
 fi
 
