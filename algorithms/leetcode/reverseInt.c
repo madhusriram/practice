@@ -4,14 +4,24 @@
 
 
 int reverse(int n) {
-	int tmp = 0;
+	int rev = 0;
 
+	bool neg = false;
+	if (n < 0) {
+		neg = true;
+		n = -1 * n;
+	}
 	// 439
 	while (n > 0) {
-		tmp = tmp * 10 + n % 10;
+		rev = rev * 10 + n % 10;
 		n = n / 10;
+	}
+
+	// restore sign
+	if (neg) {
+		rev = -1 * rev;
 	}	
-	return tmp;
+	return rev;
 }
 
 
