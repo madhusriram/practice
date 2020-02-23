@@ -23,6 +23,7 @@
 | reversevowels.cc | Easy | Reverse all vowels of a string
 | runlength.c | Easy | Run length encoding and decoding
 | singleNum.c | Easy | Find a number that appears only once in an array
+| missingnum.c | Easy | Find the missing number in an array of 0 to n
 
 ## Medium
 | File | Level | Description |
