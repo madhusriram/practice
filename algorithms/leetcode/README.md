@@ -25,6 +25,7 @@
 | singleNum.c | Easy | Find a number that appears only once in an array
 | missingnum.c | Easy | Find the missing number in an array of 0 to n
 | finddiff.c | Easy | Find the difference in strings
+| findunique.c | Easy | Find first non-repeating character in a string
 
 ## Medium
 | File | Level | Description |
