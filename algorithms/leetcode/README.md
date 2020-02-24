@@ -24,6 +24,7 @@
 | runlength.c | Easy | Run length encoding and decoding
 | singleNum.c | Easy | Find a number that appears only once in an array
 | missingnum.c | Easy | Find the missing number in an array of 0 to n
+| finddiff.c | Easy | Find the difference in strings
 
 ## Medium
 | File | Level | Description |
@@ -42,6 +43,7 @@
 | findfistlast.c | Medium | Find first and last position of element in sorted array
 | finddup.c | Medium | Perform Heap sort and then compare adjacent elements
 | atoi.cc | Medium | Convert string to integer
+| singleNum2.c | Medium | Find the number that appears only once whereas every other appears thrice (PENDING)
 
 ## Hard
 | File | Level | Description |
