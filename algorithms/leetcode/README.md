@@ -45,6 +45,7 @@
 | finddup.c | Medium | Perform Heap sort and then compare adjacent elements
 | atoi.cc | Medium | Convert string to integer
 | singleNum2.c | Medium | Find the number that appears only once whereas every other appears thrice (PENDING)
+| singleNum3.c | Medium | Find 2 numbers that appears exactly once whilst others appear more than once
 
 ## Hard
 | File | Level | Description |
