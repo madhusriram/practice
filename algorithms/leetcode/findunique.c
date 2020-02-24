@@ -13,7 +13,7 @@ int firstUniqChar(char *s) {
 	// non-repeating will have it's index stored
 	for (int i = 0; s[i] != '\0'; i++) {
 		int index = s[i] - 'a';
-		if (letterMask[index] > 0 ) {
+		if (letterMask[index] > 0 || letterMask[index] == -1) {
 			letterMask[index] = -1;
 		} else {
 			letterMask[index] = i + 1;	// first time seeing this
@@ -32,6 +32,9 @@ int firstUniqChar(char *s) {
 
 	// becauses index'es are stored as i + 1 to avoid duplication with the meaning
 	// of zero
+	if (min == INT_MAX)
+		return -1;
+
 	return min - 1;
 }
 
