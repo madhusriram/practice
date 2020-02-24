@@ -26,6 +26,7 @@
 | missingnum.c | Easy | Find the missing number in an array of 0 to n
 | finddiff.c | Easy | Find the difference in strings
 | findunique.c | Easy | Find first non-repeating character in a string
+| minStack.c | Easy | Implement a stack performing Push, Pop, Top and GetMin() all in constant time
 
 ## Medium
 | File | Level | Description |
