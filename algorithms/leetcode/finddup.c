@@ -8,11 +8,10 @@
 // perform heap sort - O(Logn) and then use 2 pointer method: O(n) totalling O(nlogn)
 int findDup(int *arr, int arr_len) {
     heapsort(arr, arr_len, 'a');
-    int dup = -1;
 
     for (int i = 0; i < arr_len; i++) {
         if (i+1 > arr_len) {
-            return dup;
+            return -1;
         }
         if (arr[i] == arr[i+1]) {
             return arr[i];
