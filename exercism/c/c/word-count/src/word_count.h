@@ -24,4 +24,6 @@ typedef struct word_count_word {
 //           words will contain the results up to that point.
 int word_count(const char *input_text, word_count_word_t * words);
 
+char *getWord(const char *, int *);
+
 #endif
