@@ -185,8 +185,8 @@ T SinglyList<T>::middleOfList() {
 template <typename T>
 void SinglyList<T>::swapNodes() {
 	Node<T> *tmp = list;
-	Node<T> *start = nullptr;
 	Node<T> *prev = nullptr;
+	bool h = true;
 
 	if (tmp == nullptr)
 		return;
@@ -206,9 +206,9 @@ void SinglyList<T>::swapNodes() {
 		}
 
 		// adjust the head
-		if (start == nullptr) {
+		if (h) {
 			list = tmp;
-			start = list; // so that we do not hit this condition again
+			h = false;
 		}	
 	
 		prev = tmp->next;
