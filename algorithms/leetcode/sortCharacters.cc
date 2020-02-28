@@ -38,8 +38,6 @@ string sortCharacter(string str) {
 		// if done with this character advance the vector
 		if (v[i].first == 0)
 			i++;
-		
-		cout << i << " " << v.size() << endl;
 	}
 	return res;
 }
