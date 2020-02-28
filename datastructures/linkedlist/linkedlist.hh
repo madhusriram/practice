@@ -63,6 +63,10 @@ class SinglyList : public Node<T> {
 		// reverse a list
 		void reverse();
 
+		// reverse K nodes
+		// https://leetcode.com/problems/reverse-nodes-in-k-group/
+		void reverseKGroup(int k);
+
 		// delete nth node from the end of the list
 		void removeNthFromEnd(int n);
 
@@ -100,6 +104,9 @@ class SinglyList : public Node<T> {
 
 	private:
 		void deleteNode(Node<T> *tmp);
+
+		// helper for reverseKGroup()
+		Node<T> *reverseKNodes(Node<T> *, Node<T> *, Node<T> *);
 
 		struct Node<T> *last = nullptr;
 

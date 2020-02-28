@@ -138,7 +138,7 @@ bool SinglyList<T>::isPalindrome() {
 
 	Node<T> *fast = list->next;
 	Node<T> *slow = list;
-	stack<int> s;
+	std::stack<int> s;
 
 	// get middle of the list
 	// 1 2 3 4 5 6
@@ -277,6 +277,68 @@ void SinglyList<T>::reverse() {
 	}
 	// set to head
 	list = prev;
+}
+
+// helper for reverseKGroup()
+// reverse from start to end
+template <typename T>
+Node<T> *SinglyList<T>::reverseKNodes(Node<T> *start, Node<T> *end, Node<T> *oldList) {
+	// use saveend to attach to starts next
+	Node<T> *saveend = end->next;
+	Node<T> *prev = saveend;
+
+	while (start != saveend) {
+		Node<T> *savenext = start->next;
+		start->next = prev;
+		prev = start;
+		start = savenext;	
+	}
+	
+	// stitch previous to new head
+	if (oldList)
+		oldList->next = prev;
+	
+	return prev;
+}
+
+// Reverse K nodes from the head
+// Iteratively reverse K elements and stitch them
+template <typename T>
+void SinglyList<T>::reverseKGroup(int k) {
+	Node<T> *tmp = list;
+	Node<T> *start = list;
+	bool head = true;
+	Node<T> *prev = nullptr;
+
+	int i = 1;
+
+	while (tmp != nullptr) {
+		
+		// time to reverse the k group
+		if (i % k == 0) {
+			Node<T> *newhead = reverseKNodes(start, tmp, prev); 
+			
+			// update object's head of the list
+			// happens only once
+			// newHead needed only for updating the objects' list head
+			// stitching of previously reversed list and
+			// current list happens in reverseKNodes()
+			if (head) {
+				list = newhead;
+				head = false;
+			}
+			
+			// store end of previously reversed list
+			// to connect to the about to be sorted list
+			prev = start;
+			
+			tmp = start;	// tmp moves to next later
+			start = start->next;
+		}
+		
+		++i; 
+		tmp = tmp->next; 
+	}
 }
 
 // find the sum of last consecutive K nodes
