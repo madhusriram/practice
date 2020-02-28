@@ -5,23 +5,23 @@ import "errors"
 
 // Distance returns the difference between two DNA strands
 func Distance(a, b string) (int, error) {
-	// if both strings are empty or
-	// if the lengths do not match
-	if a == "" && b == "" {
-		return 0, nil
+	// Iterating the string directly compares byte by byte but each character
+	// in a golang string can be multiple bytes. It is good to rather
+	// compare runes by runes which would cover 4 byte comparison instead
+	// of 1-byte
+	c, d := []rune(a), []rune(b)
+
+	if len(c) != len(d) {
+		return 0, errors.New("inequal DNA strands")
 	}
 
-	if len(a) != len(b) {
-		return 0, errors.New("Inequal DNA strands")
-	}
+	hammingDistance := 0
 
-	diff := 0
-
-	for i := 0; i < len(a); i++ {
-		if a[i] != b[i] {
-			diff += 1
+	for i := range c {
+		if c[i] != d[i] {
+			hammingDistance++
 		}
 	}
 
-	return diff, nil
+	return hammingDistance, nil
 }
