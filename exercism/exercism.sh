@@ -25,6 +25,8 @@ elif [[ "$TRACK" == "cpp" ]]; then
 	downloadfolder=${basedir}/cpp/
 elif [[ "$TRACK" == "c" ]]; then
 	downloadfolder=${basedir}/c/
+elif [[ "$TRACK" == "python" ]]; then
+	downloadfolder=${basedir}/python/
 fi
 
 # Configure exercism
