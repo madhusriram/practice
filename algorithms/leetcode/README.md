@@ -27,6 +27,7 @@
 | finddiff.c | Easy | Find the difference in strings
 | findunique.c | Easy | Find first non-repeating character in a string
 | minStack.c | Easy | Implement a stack performing Push, Pop, Top and GetMin() all in constant time
+| binSearch.go | Easy | Search an element in a sorted array
 
 ## Medium
 | File | Level | Description |
