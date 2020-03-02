@@ -102,6 +102,12 @@ class SinglyList : public Node<T> {
 		// https://www.geeksforgeeks.org/maximum-sum-of-k-consecutive-nodes-in-the-given-linked-list/
 		int maxSumOfK(int );
 
+		// Stanford linked list prep
+		// Assumes even number of elements in the list
+		// For Input as 1 2 3 4 5 6
+		// The output shall be 4 1 5 2 6 3
+		void shuffleList();
+
 	private:
 		void deleteNode(Node<T> *tmp);
 

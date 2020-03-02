@@ -379,6 +379,40 @@ int SinglyList<T>::sumOfLastK(int k) {
 	return sum;
 }
 
+// Shuffle a list
+// This assumes that there are even number of elements in the list
+template <typename T>
+void SinglyList<T>::shuffleList() {
+	// find the halfway point
+	// 2 pointer method
+	Node<T> *s = list;
+	Node<T> *f = list->next;
+
+	// since there is a guarantee that there will
+	// be even number of nodes, we can only check
+	// if the next is not null for fast ptr
+	while (f->next) {
+		s = s->next;
+		f = f->next->next;
+	}
+	// 2 lists will be s and f
+	f = s->next;
+	s->next = nullptr;
+	s = list;
+	list = f; // head of the list starts at the second list
+
+	// braid now!
+	while (s && f) {
+		Node<T> *savefnext = f->next;
+		Node<T> *savesnext = s->next;
+		
+		f->next = s;
+		s->next = savefnext;
+		f = f->next->next;
+		s = savesnext;
+	}	
+}
+
 // Max sum of K consecutive nodes in the list
 template <typename T>
 int SinglyList<T>::maxSumOfK(int k) {

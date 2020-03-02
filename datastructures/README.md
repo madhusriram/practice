@@ -3,9 +3,9 @@ Implementations of a few data structures/algorithms and their tests in C++ for f
 
 ## Completed
 - Doubly Circular Linked List
+- Singly Linked list
 
 ## Pending
-- Linked List
 - Graph Datastructures
 - Heap datastructure
 	- Max heaps
@@ -13,4 +13,3 @@ Implementations of a few data structures/algorithms and their tests in C++ for f
 - Binary Search Tree
 	- AVL Tree
 	- Red black tree
-

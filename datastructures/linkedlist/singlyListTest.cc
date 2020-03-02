@@ -247,6 +247,21 @@ TEST(SingyList, DISABLED_IsPalindrome) {
 	ASSERT_EQ(true == l4.isPalindrome(), 1);
 }
 
+// Shuffle even number of nodes in a list
+TEST(SinglyList, Shuffle) {
+	SinglyList<int> l;
+	std::list<int> input{1,2,3,4,5,6};
+	l.push_back(input);
+	
+	// shuffle
+	l.shuffleList();
+
+	std::list<int> expected{4,1,5,2,6,3};
+	std::list<int> listEl;
+	l.getListElements(listEl);
+	ASSERT_EQ(listEl == expected, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);
