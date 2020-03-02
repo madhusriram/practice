@@ -48,6 +48,7 @@
 | singleNum2.c | Medium | Find the number that appears only once whereas every other appears thrice (PENDING)
 | singleNum3.c | Medium | Find 2 numbers that appears exactly once whilst others appear more than once
 | sortCharacters.cc | Medium | Sort characters by freqeuncy of occurance and return a string
+| groupAnagrams.go | Medium | Group anagrams
 
 ## Hard
 | File | Level | Description |
