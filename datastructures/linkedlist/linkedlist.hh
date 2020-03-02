@@ -114,6 +114,9 @@ class SinglyList : public Node<T> {
 		// helper for reverseKGroup()
 		Node<T> *reverseKNodes(Node<T> *, Node<T> *, Node<T> *);
 
+		// reverse from the start till the end and return the new head
+		Node<T> *reverse(Node<T> *);
+
 		struct Node<T> *last = nullptr;
 
 		unsigned int length;

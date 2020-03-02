@@ -130,19 +130,59 @@ void SinglyList<T>::sumLists(SinglyList<T>& l, SinglyList<T> &sumList) {
 // naive method is to have 2 pointers, fast and slow.
 // for each traversal of the slow, add it to the stack.
 // after hitting the half point move the slow and pop each from the stack and compare!
-// this would O(N) and O(N/2) space
+// this would O(N) and O(N) space
+//
+// To reduce the space usage - reverse the second half of the list and compare
+// again, note this modifies the original list
 template <typename T>
 bool SinglyList<T>::isPalindrome() {
 	if (! list)
 		return false;
 
+	// special case, single node is a palindrome
+	if (list->next == nullptr)
+		return true;
+
 	Node<T> *fast = list->next;
 	Node<T> *slow = list;
-	std::stack<int> s;
+	Node<T> *prev;
 
-	// get middle of the list
-	// 1 2 3 4 5 6
-	// 1 2 3 4 5
+	// get 2 lists
+	// O(N) time and O(1) space
+	while (fast && fast->next && fast->next->next) {
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	// to tie the reversed nodes to the first half of the list
+	if (fast->next) {
+		prev = slow->next;
+	} else {
+		prev = slow;
+	}
+	// reverse the fast side of the list
+	// O(N) time
+	prev->next = reverse(prev->next);
+	
+	// now the list is good to be compared from the start to the middle in the
+	// first list and from the middle to the end in the second list
+	Node<T> *copy = list;
+	Node<T> *second = prev->next;
+
+	// start second from the right node depending on if we've
+	// even or odd nodes
+	// O(N) time, O(1) space
+	while (true) {
+		if (copy->data != second->data)
+			return false;
+
+		// signals the end of comparison
+		if (copy == slow)
+			break;
+
+		copy = copy->next;
+		second = second->next;
+	}
+	return true;
 }
 
 template <typename T>
@@ -277,6 +317,25 @@ void SinglyList<T>::reverse() {
 	}
 	// set to head
 	list = prev;
+}
+
+// reverse from start till end and return the new head
+template <typename T>
+Node<T> *SinglyList<T>::reverse(Node<T> *start) {
+	if (! start)
+		return nullptr;
+
+	Node<T> *prev = nullptr;
+	Node<T> *savenext = nullptr;
+
+	while (start) {
+		savenext = start->next;
+		start->next = prev;
+		prev = start;
+		start = savenext;
+	}
+
+	return prev;	
 }
 
 // helper for reverseKGroup()

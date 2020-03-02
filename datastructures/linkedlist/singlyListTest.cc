@@ -220,8 +220,8 @@ TEST(SinglyList, SwapAdjacent) {
 }
 
 // Is the list a palindrome?
-// TODO run this test
-TEST(SingyList, DISABLED_IsPalindrome) {
+// run this test
+TEST(SingyList, Is_Palindrome) {
 	SinglyList<int> l;
 	std::list<int> input{1,2,3,4,5};
 	l.push_back(input);
