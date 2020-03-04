@@ -48,10 +48,10 @@ class SinglyList : public Node<T> {
 		// traverse the list
 		void traverseList();
 
-		// link two lists
+		// TODO link two lists
 		void linkTwoLists(SinglyList<T> &);
 
-		// split list
+		// TODO split list
 		void splitLists(SinglyList &);
 		
 		// delete odd positions
@@ -107,6 +107,10 @@ class SinglyList : public Node<T> {
 		// For Input as 1 2 3 4 5 6
 		// The output shall be 4 1 5 2 6 3
 		void shuffleList();
+		
+		// Returned object would contain a list made by splicing together
+		// the input lists
+		SinglyList<T> *mergeTwoLists(SinglyList<T> &, SInglyList<T> &);
 
 	private:
 		void deleteNode(Node<T> *tmp);

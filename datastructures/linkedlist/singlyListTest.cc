@@ -220,7 +220,6 @@ TEST(SinglyList, SwapAdjacent) {
 }
 
 // Is the list a palindrome?
-// run this test
 TEST(SingyList, Is_Palindrome) {
 	SinglyList<int> l;
 	std::list<int> input{1,2,3,4,5};
@@ -260,6 +259,26 @@ TEST(SinglyList, Shuffle) {
 	std::list<int> listEl;
 	l.getListElements(listEl);
 	ASSERT_EQ(listEl == expected, 1);
+}
+
+// Merge sorted lists
+TEST(SinglyList, Merge2SortedList) {
+	SinglyList<int> l1;
+	std::list<int> input1{1,2,4};
+	l1.push_back(input1);
+
+	SinglyList<int> l2;
+	std::list<int> input2{1,3,4};
+	l2.push_back(input2);
+
+	// merge 2 lists
+	SinglyList<int> *res = l.merge2(l1, l2);
+
+	std::list<int> expected{1,1,2,3,4,4};
+	std::list<int> listEl;
+	res.getListElements(listEl);
+
+	ASSERT_EQ(expected == listEl, 1);
 }
 
 // Start here!

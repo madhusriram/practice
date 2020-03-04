@@ -75,6 +75,28 @@ void SinglyList<T>::traverseList() {
 	std::cout << std::endl;	
 }
 
+// merge 2 sorted lists
+SinglyList<T> *SinglyList<T>::mergeTwoLists(SinglyList<T> &l1, SinglyList<T> &l2) {
+	Node<T> *a = l2;
+	Node<T> *b = l1;
+	Node<T> *anext;
+	Node<T> *bnext;
+	Node<T> *r = b;
+
+	if (l1->data < l2->data) {
+		a = l1;
+		b = l2;
+	}
+
+	while (r) {
+	
+	}
+
+
+
+
+}
+
 // sum list1 and list2 and return a new list object
 template <typename T>
 void SinglyList<T>::sumLists(SinglyList<T>& l, SinglyList<T> &sumList) {
