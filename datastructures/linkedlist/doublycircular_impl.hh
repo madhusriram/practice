@@ -188,6 +188,38 @@ inline bool DoublyCircularLinkedList<T>::isEndOfList(Node<T> *a, Node<T> *b) {
 // delete odd positions in the list
 template <typename T>
 void DoublyCircularLinkedList<T>::deleteOddPos() {
+	Node<T> *tmp = list;
+	Node<T> *savenext;
+	Node<T> *saveprev;
+	Node<T> *last;
+
+	// remove the head and update the head
+	if (tmp) {
+		if (tmp->next)
+			tmp->next->prev = tmp->prev;
+
+		savenext = tmp->next;
+		tmp->prev->next = tmp->next;
+		last = tmp;
+		free(tmp);
+		tmp = savenext;
+		list = savenext;
+
+		// single node list
+		if (! tmp)
+			return;
+	} else {
+		return;		// no nodes
+	}
+
+	// stop iteration when we hit the last node
+	while (tmp != last) {
+		if (tmp->next) {
+						
+		}
+
+	}
+
 	
 }
 

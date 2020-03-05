@@ -262,7 +262,7 @@ TEST(SinglyList, Shuffle) {
 }
 
 // Merge sorted lists
-TEST(SinglyList, Merge2SortedList) {
+TEST(SinglyList, DISABLED_Merge2SortedList) {
 	SinglyList<int> l1;
 	std::list<int> input1{1,2,4};
 	l1.push_back(input1);

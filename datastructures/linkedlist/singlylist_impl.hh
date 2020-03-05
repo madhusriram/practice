@@ -81,20 +81,33 @@ SinglyList<T> *SinglyList<T>::mergeTwoLists(SinglyList<T> &l1, SinglyList<T> &l2
 	Node<T> *b = l1;
 	Node<T> *anext;
 	Node<T> *bnext;
-	Node<T> *r = b;
-
+	bool first = false;
+	
+	// use a as the list to grow on
+	// and b as the list to be merged into a
 	if (l1->data < l2->data) {
 		a = l1;
 		b = l2;
+		first = true;
 	}
 
-	while (r) {
+	// Build on a
+	// 1 2 3
+	// 1 3 4
+	while (a) {
+		anext = a->next;
+		bnext = b->next;
+
 	
 	}
 
 
+	a->next = b;
 
-
+	if (first)
+		return l1;
+	
+	return l2;
 }
 
 // sum list1 and list2 and return a new list object

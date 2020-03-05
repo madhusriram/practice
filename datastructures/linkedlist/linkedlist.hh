@@ -85,7 +85,6 @@ class SinglyList : public Node<T> {
 		// sum 2 lists
 		void sumLists(SinglyList<T>&, SinglyList<T>& );
 
-		// TODO is a palindrome?
 		bool isPalindrome();
 
 		// sort and join two lists
