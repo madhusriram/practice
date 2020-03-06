@@ -262,7 +262,7 @@ TEST(SinglyList, Shuffle) {
 }
 
 // Merge sorted lists
-TEST(SinglyList, DISABLED_Merge2SortedList) {
+/*TEST(SinglyList, DISABLED_Merge2SortedList) {
 	SinglyList<int> l1;
 	std::list<int> input1{1,2,4};
 	l1.push_back(input1);
@@ -279,6 +279,31 @@ TEST(SinglyList, DISABLED_Merge2SortedList) {
 	res.getListElements(listEl);
 
 	ASSERT_EQ(expected == listEl, 1);
+}
+*/
+
+// Reverse M to N nodes only 
+TEST(SinglyList, ReverseMtoN) {
+	SinglyList<int> l;
+	std::list<int> input{1,2,3,4,5};
+	l.push_back(input);
+
+	l.reverseMtoN(1,5);
+
+	std::list<int> expected{5,4,3,2,1};
+	std::list<int> listEl;
+	l.getListElements(listEl);
+
+	ASSERT_EQ(expected == listEl, 1);
+
+	l.reverseMtoN(2,4);
+	listEl.clear();
+	l.getListElements(listEl);
+	expected.clear();
+	expected = {5,2,3,4,1};
+
+	ASSERT_EQ(expected == listEl, 1);
+
 }
 
 // Start here!

@@ -67,6 +67,10 @@ class SinglyList : public Node<T> {
 		// https://leetcode.com/problems/reverse-nodes-in-k-group/
 		void reverseKGroup(int k);
 
+		// Reverse from position m to n
+		// https://leetcode.com/problems/reverse-linked-list-ii/
+		void reverseMtoN(int m, int n);
+
 		// delete nth node from the end of the list
 		void removeNthFromEnd(int n);
 
@@ -109,7 +113,8 @@ class SinglyList : public Node<T> {
 		
 		// Returned object would contain a list made by splicing together
 		// the input lists
-		SinglyList<T> *mergeTwoLists(SinglyList<T> &, SInglyList<T> &);
+		// TODO
+		// SinglyList<T> *mergeTwoLists(SinglyList<T> &, SinglyList<T> &);
 
 	private:
 		void deleteNode(Node<T> *tmp);

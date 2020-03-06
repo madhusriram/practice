@@ -76,7 +76,7 @@ void SinglyList<T>::traverseList() {
 }
 
 // merge 2 sorted lists
-SinglyList<T> *SinglyList<T>::mergeTwoLists(SinglyList<T> &l1, SinglyList<T> &l2) {
+/*SinglyList<T> *SinglyList<T>::mergeTwoLists(SinglyList<T> &l1, SinglyList<T> &l2) {
 	Node<T> *a = l2;
 	Node<T> *b = l1;
 	Node<T> *anext;
@@ -109,6 +109,7 @@ SinglyList<T> *SinglyList<T>::mergeTwoLists(SinglyList<T> &l1, SinglyList<T> &l2
 	
 	return l2;
 }
+*/
 
 // sum list1 and list2 and return a new list object
 template <typename T>
@@ -433,6 +434,54 @@ void SinglyList<T>::reverseKGroup(int k) {
 		++i; 
 		tmp = tmp->next; 
 	}
+}
+
+template <typename T>
+void SinglyList<T>::reverseMtoN(int m, int n) {
+	Node<T> *l = list;
+	Node<T> *savenext;
+	Node<T> *last_in_reverse = nullptr;
+	Node<T> *first_in_reverse;
+	Node<T> *prev;
+	Node<T> *reverseList = nullptr;
+	bool from_first = false;
+
+	int len = n - m + 1;
+
+	if (m == 1)
+		from_first = true;	
+
+	// traverse until the m - 1 node is reached
+	for (int i = 1; i + 1 < m; i++) {
+		l = l->next;
+	}
+
+	if (! from_first) {
+		prev = l;
+		l = l->next;
+	}
+
+	// Bug - does not take into account if m == 1
+	for (int reverseCount = 0; reverseCount < len; reverseCount++) {
+		savenext = l->next;
+
+		// set last in reverse, first in the original list
+		if (! last_in_reverse) 
+			last_in_reverse = l;
+	
+		l->next = reverseList;
+		reverseList = l;
+		l = savenext;
+	}
+
+	if (from_first) {
+		list = reverseList;
+	} else {
+		// attach to the non-reversed list
+		prev->next = reverseList;
+	}
+
+	last_in_reverse->next = savenext;
 }
 
 // find the sum of last consecutive K nodes
