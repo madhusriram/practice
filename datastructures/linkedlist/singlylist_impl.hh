@@ -595,6 +595,32 @@ int SinglyList<T>::maxSumOfK(int k) {
 	return prevMax;
 }
 
+// odd numbered nodes first and then even numbered nodes
+template <typename T>
+void SinglyList<T>::oddEven() {
+	Node<T> *tmpOdd = list;
+	Node<T> *evenHead = nullptr;
+	Node<T> *tmpEven;
+	
+	// Join tmpOdd to evenHead at the end
+	while (tmpOdd->next) {
+		tmpEven = tmpOdd->next;
+
+		tmpOdd->next = tmpEven->next;
+		
+		if (! evenHead)
+			evenHead = tmpEven;
+
+		if (tmpOdd->next)
+			tmpOdd = tmpOdd->next;
+		
+		tmpEven->next = tmpOdd->next;
+		tmpEven = tmpEven->next;
+	}
+
+	tmpOdd->next = evenHead;
+}
+
 // slowPtr moves 1 step closer than the regular "tmp" pointer
 // Can be solved through tortoise and hare logic!
 // 1 2 3

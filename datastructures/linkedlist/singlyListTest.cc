@@ -306,6 +306,22 @@ TEST(SinglyList, ReverseMtoN) {
 
 }
 
+// odd numbered nodes first and then even numbered nodes
+TEST(SinglyList, OddEven) {
+	SinglyList<int> l1;
+	std::list<int> input{2,1,3,5,6,4,7};
+	l1.push_back(input);
+
+	l1.oddEven();
+	l1.traverseList();
+
+	std::list<int> expected{2,3,6,7,1,5,4};
+	std::list<int> listEl;
+	l1.getListElements(listEl);
+
+	ASSERT_EQ(listEl == expected, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);

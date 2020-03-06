@@ -110,7 +110,11 @@ class SinglyList : public Node<T> {
 		// For Input as 1 2 3 4 5 6
 		// The output shall be 4 1 5 2 6 3
 		void shuffleList();
-		
+	
+		// odd even list
+		// https://leetcode.com/problems/odd-even-linked-list/
+		void oddEven();
+
 		// Returned object would contain a list made by splicing together
 		// the input lists
 		// TODO
