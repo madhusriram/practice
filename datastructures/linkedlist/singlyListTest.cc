@@ -313,13 +313,22 @@ TEST(SinglyList, OddEven) {
 	l1.push_back(input);
 
 	l1.oddEven();
-	l1.traverseList();
 
 	std::list<int> expected{2,3,6,7,1,5,4};
 	std::list<int> listEl;
 	l1.getListElements(listEl);
 
 	ASSERT_EQ(listEl == expected, 1);
+}
+
+// Get integer value out of a list which has 0's and 1's
+TEST(SinglyList, GetInt) {
+	SinglyList<int> l;
+	std::list<int> input{1,0,0,1,0,0,1,1,1,0,0,0,0,0,0};
+	l.push_back(input);
+
+	int res = l.getInt();
+	ASSERT_EQ(res == 18880, 1);
 }
 
 // Start here!

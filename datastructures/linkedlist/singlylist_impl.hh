@@ -1,4 +1,5 @@
 #include <stack>		// wouldn't need this but only for some help
+#include <vector>
 
 // adds to the beginning of the list
 template <typename T>
@@ -651,6 +652,35 @@ void SinglyList<T>::deleteOddPos() {
 			start = false;
 		}
 	}
+}
+
+// Get decimal from a linked list
+template <typename T>
+int SinglyList<T>::getInt() {
+	Node<T> *head = list;
+
+	if (! head)
+		return 0;
+
+	std::vector<int> pos;
+	int count = 0;
+	int res = 0;
+
+	while (head) {
+		if (head->data)
+			pos.push_back(count);
+
+		count++;
+		head = head->next;
+	}
+	count--;
+
+	// iterate the vector now
+	for (auto it = pos.begin(); it != pos.end(); it++) {
+		res += 1 << (count - *it);
+	}
+	
+	return res;
 }
 
 // Use fast and slow pointer logic

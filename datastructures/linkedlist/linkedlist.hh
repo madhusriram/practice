@@ -120,6 +120,10 @@ class SinglyList : public Node<T> {
 		// TODO
 		// SinglyList<T> *mergeTwoLists(SinglyList<T> &, SinglyList<T> &);
 
+		// Convert to integer from linked list
+		// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+		int getInt();
+
 	private:
 		void deleteNode(Node<T> *tmp);
 
