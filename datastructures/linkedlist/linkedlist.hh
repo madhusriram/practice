@@ -124,6 +124,10 @@ class SinglyList : public Node<T> {
 		// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
 		int getInt();
 
+		// Remove all occurences of a node in the list
+		// https://leetcode.com/problems/remove-linked-list-elements/
+		void removeNode(T );
+
 	private:
 		void deleteNode(Node<T> *tmp);
 

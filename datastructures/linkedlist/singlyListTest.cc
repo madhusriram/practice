@@ -331,6 +331,20 @@ TEST(SinglyList, GetInt) {
 	ASSERT_EQ(res == 18880, 1);
 }
 
+TEST(SinglyList, RemoveNodes) {
+	SinglyList<int> l;
+	std::list<int> input{1,2,1};
+	l.push_back(input);
+
+	l.removeNode(1);
+
+	std::list<int> expected{2};
+	std::list<int> listEl;
+	l.getListElements(listEl);
+
+	ASSERT_EQ(listEl == expected, 1);
+}
+
 // Start here!
 int main(int ac, char **av) {
 	testing::InitGoogleTest(&ac, av);

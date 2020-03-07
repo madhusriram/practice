@@ -683,6 +683,43 @@ int SinglyList<T>::getInt() {
 	return res;
 }
 
+// Remove a node
+template <typename T>
+void SinglyList<T>::removeNode(T data) {
+	Node<T> *copy = list;
+	bool newHead = false;
+	Node<T> *prev = list;
+
+	if (! list)
+		return ;
+
+	// special case for head node
+	while (! newHead && copy) {
+		if (copy->data != data) {
+			newHead = true;
+			copy = copy->next;
+		} else {
+			Node<T> *savenext = copy->next;
+			delete(list);
+			list = savenext;
+			prev = list;
+			copy = list;
+		}
+	}
+       
+	while (copy) {
+		if (copy->data == data) {
+			Node<T> *savenext = copy->next;
+			delete(copy);
+			prev->next = savenext;
+			copy = savenext;
+			continue;
+		}
+		prev = copy;
+		copy = copy->next;
+	}
+}
+
 // Use fast and slow pointer logic
 template <typename T>
 void SinglyList<T>::deleteEvenPos() {
