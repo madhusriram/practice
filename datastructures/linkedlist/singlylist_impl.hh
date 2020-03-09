@@ -174,7 +174,7 @@ void SinglyList<T>::sumLists(SinglyList<T>& l, SinglyList<T> &sumList) {
 template <typename T>
 bool SinglyList<T>::isPalindrome() {
 	if (! list)
-		return false;
+		return true;
 
 	// special case, single node is a palindrome
 	if (list->next == nullptr)
