@@ -1,3 +1,4 @@
+// Package protein converts RNA sequences to their equivalent protein names
 package protein
 
 import (
@@ -51,7 +52,7 @@ func FromRNA(sequence string) ([]string, error) {
 			protein, err := FromCodon(string(r[i+1-count : i+1]))
 			// stop at ErrStop
 			if err == ErrStop {
-				return proteinList, nil
+				break
 			}
 			if err != nil {
 				return proteinList, err
