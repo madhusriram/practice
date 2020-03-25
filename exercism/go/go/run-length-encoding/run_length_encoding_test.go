@@ -11,7 +11,7 @@ func TestRunLengthEncode(t *testing.T) {
 		t.Logf("PASS RunLengthEncode - %s", test.description)
 	}
 }
-func estRunLengthDecode(t *testing.T) {
+func TestRunLengthDecode(t *testing.T) {
 	for _, test := range decodeTests {
 		if actual := RunLengthDecode(test.input); actual != test.expected {
 			t.Errorf("FAIL %s - RunLengthDecode(%s) = %q, expected %q.",
@@ -20,7 +20,7 @@ func estRunLengthDecode(t *testing.T) {
 		t.Logf("PASS RunLengthDecode - %s", test.description)
 	}
 }
-func estRunLengthEncodeDecode(t *testing.T) {
+func TestRunLengthEncodeDecode(t *testing.T) {
 	for _, test := range encodeDecodeTests {
 		if actual := RunLengthDecode(RunLengthEncode(test.input)); actual != test.expected {
 			t.Errorf("FAIL %s - RunLengthDecode(RunLengthEncode(%s)) = %q, expected %q.",
