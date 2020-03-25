@@ -1,9 +1,11 @@
 package encode
 
-import "strconv"
-import "fmt"
-import "unicode"
-import "unicode/utf8"
+import (
+	"strconv"
+	"unicode"
+	"unicode/utf8"
+	"strings"
+)
 
 func RunLengthEncode(input string) string {
 	// empty string
@@ -12,16 +14,16 @@ func RunLengthEncode(input string) string {
 	}
 
 	var count int = 0
-	var result string
+	var result strings.Builder
 	prev, _ := utf8.DecodeRuneInString(input)
 
 	for _, c := range input {
 		// change of character
 		if prev != c {
 			if count > 1 {
-				result += strconv.Itoa(count) // count
+				result.WriteString(strconv.Itoa(count)) // count
 			}
-			result += string(prev)
+			result.WriteRune(prev)
 			count = 0
 		}
 		count += 1
@@ -29,12 +31,11 @@ func RunLengthEncode(input string) string {
 	}
 
 	if count > 1 {
-		result += strconv.Itoa(count)
+		result.WriteString(strconv.Itoa(count))
 	}
-	result += string(prev)
+	result.WriteRune(prev)
 
-	fmt.Printf("Input: %s, result: %s\n", input, result)
-	return result
+	return result.String()
 }
 
 func RunLengthDecode(input string) string {
@@ -44,7 +45,7 @@ func RunLengthDecode(input string) string {
 	}
 
 	var n int = 0
-	var decodedString string
+	var decodedString strings.Builder
 
 	for _, c := range input {
 		// save number
@@ -57,16 +58,16 @@ func RunLengthDecode(input string) string {
 
 		// special case - for no number just 1 letter gets printed
 		if n == 0 {
-			decodedString += string(c)
+			decodedString.WriteRune(c)
 			continue
 		}
 
 		for i := 0; i < n; i++ {
-			decodedString += string(c)
+			decodedString.WriteRune(c)
 		}
 
 		n = 0
 	}
 
-	return decodedString 
+	return decodedString.String() 
 }
