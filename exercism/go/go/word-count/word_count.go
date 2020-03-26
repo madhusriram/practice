@@ -1,3 +1,4 @@
+// Package wordcount counts the number of words
 package wordcount
 
 import "strings"
@@ -6,8 +7,7 @@ import "unicode"
 // Frequency maps words to their occurrences
 type Frequency map[string]int
 
-// What constitus a word?
-// Anything that is a letter, or a apostrophe, or a number
+// WordCount finds words consisting of letters, alphabets and apostrophe
 func WordCount(input string) Frequency {
 	var f Frequency = make(Frequency)
 
@@ -30,7 +30,7 @@ func WordCount(input string) Frequency {
 	// last word
 	if s.Len() > 0 {
 		var res string = strings.Trim(s.String(), string('\''))
-		f[res] += 1
+		f[res]++
 	}
 
 	return f
