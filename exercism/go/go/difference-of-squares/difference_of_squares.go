@@ -13,7 +13,7 @@ func SquareOfSum(n int) int {
 
 // SumOfSquares returns the sum of squares
 func SumOfSquares(n int) int {
-	return (n * (n + 1) * (2 * n + 1)) / 6	
+	return (n * (n + 1) * (2*n + 1)) / 6
 }
 
 // Difference returns the difference of SquareOfSum and SumOfSquares
