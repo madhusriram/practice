@@ -18,7 +18,6 @@ char *abbreviate(const char *phrase) {
 	for (int i = 0; i < len; i++) {
 		if (!readWord && isalpha(phrase[i])) {
 			readWord = true;
-			// add to the result array - pending
 			if (! isupper(phrase[i]))
 				res[j] = phrase[i] - 32;
 			else

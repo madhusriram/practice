@@ -8,20 +8,18 @@ import (
 // IsIsogram returns true if a string is a isogram
 // else false
 func IsIsogram(s string) bool {
-	var mask uint32
+	charMap := make(map[rune]bool)
 
 	for _, c := range s {
-		if ok := unicode.IsLetter(c); ok {
-			l := unicode.ToLower(c)
-			bit := uint32(1 << uint32(int(l)-97))
-
-			// check if bit is already set, if not set it
-			if mask&bit == bit {
-				return false
-			} else {
-				mask |= bit
-			}
+		if ok := unicode.IsLetter(c); !ok {
+			continue
 		}
+		c = unicode.ToUpper(c)
+		// if character read before, exit
+		if charMap[c] {
+			return false
+		}
+		charMap[c] = true
 	}
 	return true
 }
