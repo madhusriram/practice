@@ -3,34 +3,45 @@ package luhn
 
 import (
 	"unicode"
+	"strings"
 )
 
-// Reverse reverse a string
-func Reverse(cc string) string {
-	runes := []rune(cc)
-	for i, j := 0, len(runes)-1; i < j; {
-		runes[i], runes[j] = runes[j], runes[i]
-		i, j = i+1, j-1
-	}
-	return string(runes)
+// RemoveSpaces removes spaces from a string
+func RemoveSpaces(str string) string {
+    var b strings.Builder
+    b.Grow(len(str))
+    for _, ch := range str {
+        if !unicode.IsSpace(ch) {
+            b.WriteRune(ch)
+        }
+    }
+    return b.String()
 }
 
 // Valid returns true if a credit card number is valid
 func Valid(cc string) bool {
-	l := len(cc)
-	// double lets us know when to double
-	var double bool = false
 	var digits int
 
+	spacelessCc := RemoveSpaces(cc)
+	l := len(spacelessCc)
+	
 	// single digit strings not valid
 	if l == 1 {
 		return false
 	}
 
-	var num int = 0
-	cc = Reverse(cc)
+	// based on the digit count we start at the
+	// first or second digit from the left to
+	// do the multiply by 2 logic
+	var double bool = false
+	if l%2 == 0 {
+		double = true
+	}
 
-	for _, d := range cc {
+	// accrue sum
+	var num int = 0
+
+	for _, d := range spacelessCc {
 		switch {
 		case unicode.IsNumber(d):
 			digits++
@@ -46,8 +57,6 @@ func Valid(cc string) bool {
 				num += n
 				double = true
 			}
-		case unicode.IsSpace(d):
-			continue
 		default:
 			return false
 		}
