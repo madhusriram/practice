@@ -18,19 +18,20 @@ func Valid(cc string) bool {
 
 	// accrue sum
 	var num int = 0
-	// alternates character reads from the card
-	var double bool = false
+	// alternates character reads from the cardi
+	var double bool = false 
+	if lengthCc%2 == 0 {
+		double = !double
+	}
 
-	// start reading card from the right to left
-	for i := lengthCc; i > 0; i-- {
-		d := newCc[i-1]
-
-		if !unicode.IsNumber(rune(d)) {
+	// start reading card from the left to right
+	for _, d := range newCc {
+		if !unicode.IsNumber(d) {
 			return false
 		}
 
 		n := int(d - '0')
-	
+
 		// odd positions go through the doubling and subtracting by 9 logic
 		if double {
 			n = n * 2
