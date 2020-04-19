@@ -11,7 +11,7 @@ func Square(input int) (uint64, error) {
 		return 0, fmt.Errorf("Invalid input, expect input betwnn 1 and 64")
 	}
 
-	return 1 << (input - 1), nil
+	return 1<<(input - 1), nil
 }
 
 // Total calculates the total number of grains in all squares
