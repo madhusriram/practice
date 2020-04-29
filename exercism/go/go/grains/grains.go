@@ -8,7 +8,7 @@ import (
 // Square calculates the grain count in a square
 func Square(input int) (uint64, error) {
 	if input <= 0 || input > 64 {
-		return 0, fmt.Errorf("Invalid input, expect input betwnn 1 and 64")
+		return 0, fmt.Errorf("bad square %d (must be 1-64)", input)
 	}
 
 	return 1 << (input - 1), nil
