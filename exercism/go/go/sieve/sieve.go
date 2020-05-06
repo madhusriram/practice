@@ -1,9 +1,6 @@
 // Package sieve calculates prime numbers until limit using Sieve of Erathosthenes algorithm
 package sieve
 
-import (
-)
-
 // Sieve returns all primes between 2 to limit
 func Sieve(limit int) []int {
 	primes := []int{}
@@ -33,8 +30,3 @@ func Sieve(limit int) []int {
 
 	return primes
 }
-
-/*
-0 1 2 3 4 
-2 3 4 5 6
-*/
