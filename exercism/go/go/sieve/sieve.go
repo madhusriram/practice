@@ -3,7 +3,7 @@ package sieve
 
 // Sieve returns all primes between 2 to limit
 func Sieve(limit int) []int {
-	primes := []int{}
+	primes := make([]int, 0, limit/2)
 
 	// no primes under 2
 	if limit < 2 {
