@@ -13,13 +13,15 @@ func Sieve(limit int) []int {
 	// list contains numbers from 2 to limit
 	numberList := make([]int, limit-1)
 
-	// iterate through numberList and add to primes
-	// if that location is 0
+	// iterate through numberList and add to primes...
+	// ...if that value at the index is 0
+	// Space O(N)
 	for i, v := range numberList {
 		if v == 0 {
 			primes = append(primes, i+2)
 		}
 
+		// number based from index
 		number := i + 2
 
 		// set all multiples of number to 1
