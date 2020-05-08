@@ -45,6 +45,9 @@ bool isVisited(const node *n) {
 
 // explore neighbors of start_node and add to the back of the queue
 void findNeighbors(const layout &l, nodelist &state, const int x, const int y, queue<struct node *> &q) {
+	// mark start node as visited
+	state[x][y]->visited = true;
+
 	for (int i = 0; i < 4; i++) {
 		int newx = x + neighbor_x[i];
 		int newy = y + neighbor_y[i];
@@ -64,9 +67,6 @@ void findNeighbors(const layout &l, nodelist &state, const int x, const int y, q
 void constructFinalPath(struct node *end_node, list<node *> &path) {
 	// traverse until start node is hit
 	while (end_node) {
-		printf("x: %d, y: %d\n", end_node->x, end_node->y);
-		if (end_node->x == 0 && end_node->y == 0)
-			break;
 		path.push_front(end_node);
 		end_node = end_node->parent;
 	}
@@ -98,12 +98,17 @@ void shortestPath(const layout &map, nodelist &state, int x1, int y1, int x2, in
 
 		// remove first element
 		q.pop();
-	}	
+	}
 }
-
 
 // print out the path
 void printPath(const list<node *> &path) {
+	if (path.size() == 0) {
+		cout << "No path found\n";
+		return;
+	}
+
+	cout << "Path: \n";
 	for (auto const &n: path) {
 		printf("(%d %d)\n", n->x, n->y);
 	}
@@ -113,11 +118,12 @@ int main() {
 	layout m {
 			{1, 1, 1, 1}, 
 			{1, -1, 1, 1}, 
-			{1, -1, 1, 1}, 
+			{1, -1, -1, 1}, 
 			{1, -1, 1, 1}
 	};
 
 	nodelist nodeStateList{4};
+	cout << "Layout\n";
 	for (int i = 0; i < 4; i++) {
 		nodeStateList[i].resize(4);
 		for (int j = 0; j < 4; j++) {
@@ -130,33 +136,27 @@ int main() {
 		}
 	}
 
-	printf("Done initializing\n");
-	// print node list
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			cout << "i: " << nodeStateList[i][j]->x << " ";
-			cout << "j: " << nodeStateList[i][j]->y << " ";
-			cout << "Visited: " << nodeStateList[i][j]->visited << " ";
-			cout << "---\n";
-		}
-		cout << "++++++++++++++\n";
-	}
-		
 	// print out the map
 	for (auto const &r1: m) {
 		for (auto const &it: r1) {
-			cout << it << " ";
+			printf("%3d", it);
 		}
 		cout << "\n";
 	}
 
+	int x1, y1, x2, y2;
+	x1 = 3;
+	y1 = 3;
+	x2 = 0;
+	y2 = 0;
+	printf("Start(%d %d), End(%d %d)\n", x1, y1, x2, y2);
 	// calculate shortest path
 	list<node *> path;
-	shortestPath(m, nodeStateList, 0, 0, 3, 3, path);
+	shortestPath(m, nodeStateList, x1, y1, x2, y2, path);
 
 	// print out the path
+	printf("Path from (%d %d) -> (%d %d)\n", x1, y1, x2, y2);
 	printPath(path);
 
 	return 0;
 }
-
