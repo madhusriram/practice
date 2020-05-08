@@ -19,8 +19,13 @@ typedef vector<vector<int>> layout;
 // marker on the layout
 typedef vector<vector<struct node *>> nodelist;
 
-int neighbor_x[4] = {0, 1, -1, 0};
-int neighbor_y[4] = {1, 0, 0, -1};
+// this is how you get to the potential neighbors
+const int neighbors[4][2] = {
+		{0, 1},
+		{1, 0},
+		{-1, 0},
+		{0, -1}
+};
 
 // validates if node can be traversed, that is it is not a -1 or out of bounds
 bool isValidNode(const layout &l, const int x, const int y) {
@@ -48,9 +53,11 @@ void findNeighbors(const layout &l, nodelist &state, const int x, const int y, q
 	// mark start node as visited
 	state[x][y]->visited = true;
 
+	// loop through current nodes' potential neighbors
 	for (int i = 0; i < 4; i++) {
-		int newx = x + neighbor_x[i];
-		int newy = y + neighbor_y[i];
+		int newx = x + neighbors[i][0];
+		int newy = y + neighbors[i][1];
+
 		if (isValidNode(l, newx, newy)) {
 			auto n = state[newx][newy]; 
 			
