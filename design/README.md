@@ -2,6 +2,9 @@
 
 ## System Design Practice:
 - https://www.educative.io/courses/grokking-the-system-design-interview
+- Design "stories" like what facebook and instagram has
+- Clone graph
+
 ## Sharding:
 - https://medium.com/@jeeyoungk/how-sharding-works-b4dec46b3f6
 
