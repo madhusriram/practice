@@ -15,7 +15,7 @@ if [ -z "$ver" ]; then
 	exit 1
 fi
 
-basedir=/source/hostvolume
+basedir="/source/hostvolume"
 
 # Change workspace based on the track
 # If track is go configure download folder to be go/
