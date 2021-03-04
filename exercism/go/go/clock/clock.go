@@ -43,14 +43,13 @@ func (c Clock) String() string {
 // Add adds 'a' minutes to the clock and returns a new clock
 func (c Clock) Add(a int) Clock {
 	c.m += a
-	return c.fixTime()
+	return New(c.h, c.m)
 }
 
 // Subtract reduces 's' minutes from the clock and returns a new clock
 func (c Clock) Subtract(s int) Clock {
 	c.m -= s
-
-	return c.fixTime()
+	return New(c.h, c.m)
 }
 
 // New creates a time string from 2 integers
